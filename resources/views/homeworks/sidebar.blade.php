@@ -35,7 +35,7 @@
               </div>
 
               <div class="sidebar__link">
-                <a href="/homeworks/">{{$problemset->problemset_name_long}}</a>
+                <a href="/homework/">{{$problemset->problemset_name_long}}</a>
               </div>
 
 
