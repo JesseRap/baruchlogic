@@ -30,7 +30,7 @@
 
           <div>
             <div class="nowrap sidebar__itemNum">
-              {{$key}}
+              {{$key + 1}}
             </div>
           </div>
 
