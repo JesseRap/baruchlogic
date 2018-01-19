@@ -25,4 +25,4 @@ Route::get('/about', 'AboutController@index');
 
 Route::get('/videos', 'VideosController@index');
 
-Route::get('/videos/{shortTitle}', 'VideosController@video');
+Route::get('/videos/{shortTitle}', 'VideosController@index');

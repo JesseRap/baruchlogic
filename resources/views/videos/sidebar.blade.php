@@ -7,9 +7,12 @@
   </label>
 
 
-  <?php $num_unis = \DB::table('videos')->select('unit')->distinct()->count() ?>
+  <?php $num_units = \DB::table('videos')->select('unit')->distinct()->count() ?>
 
-  @foreach (range(1, $num_unis) as $unit)
+  <div class="sidebar__container">
+
+
+  @foreach (range(1, $num_units) as $unit)
 
   <div class="sidebar__unit">
 
@@ -18,7 +21,7 @@
   @foreach ($allVideos as $key => $video)
     @if ($video->unit == $unit)
 
-    <div class="sidebar__container">
+    <div class="sidebar__content">
 
       <div class="sidebar__circleContainer">
         <div class="circle circle--unwatched">
@@ -32,7 +35,7 @@
           </div>
 
           <div class="sidebar__link">
-            <a href="/videos/video/{{$video->short_title}}">{{$video->title}}</a>
+            <a href="/videos/{{$video->short_title}}">{{$video->title}}</a>
           </div>
 
 
@@ -40,6 +43,10 @@
 
         @endif
       @endforeach
+    </div>
 
 
-      @endforeach
+    @endforeach
+
+</div>
+</div>

@@ -8,7 +8,7 @@
 
 @include('/videos/sidebar')
 
-@if ($currentVideo == NULL)
+@if ($currentVideo === NULL)
 @include('/videos/main-empty')
 
 @else

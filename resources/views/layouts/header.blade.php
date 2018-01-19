@@ -65,17 +65,19 @@
     <!-- LOGIN ICON & MODAL -->
 
     <div class="loginButton header__loginButton">
-          <img src="/images/user-icon.png" alt="login icon">
-          <div class="loginButton__modal header__modal loginButton__modal--hidden">
-            @if (session('key'))
-              Welcome,john
-            @elseif (session('adminkey'))
-              Welcome, jane
-            @else
-              <a href="/login">Sign In</a>
-            @endif
-          </div>
-        </div>
+      <img src="{{asset('/images/user-icon.png')}}" alt="login icon">
+      <div class="loginButton__modal header__modal loginButton__modal--hidden">
+        @if (session('key'))
+          Welcome,john
+        @elseif (session('adminkey'))
+          Welcome, jane
+        @else
+          <a href="/login">Sign In</a>
+        @endif
+      </div>
+    </div>
+
+    <script type="text/javascript" src="{{asset('/js/loginButton.js')}}"></script>
 
 
 

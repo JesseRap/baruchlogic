@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>baruchlogic</title>
 
-    @include('layouts.head')
+    @include('layouts/head')
 
 
 
