@@ -1,3 +1,4 @@
+
 <div class="sidebar">
 
   <input type="checkbox" class="sidebar__checkbox" id="accordionBtn" name="accordionBtn" value="">
@@ -6,7 +7,9 @@
   </label>
 
 
-  @foreach (range(1, $numUnits) as $unit)
+  <?php $num_unis = \DB::table('videos')->select('unit')->distinct()->count() ?>
+
+  @foreach (range(1, $num_unis) as $unit)
 
   <div class="sidebar__unit">
 

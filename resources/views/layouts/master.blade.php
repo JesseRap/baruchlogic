@@ -3,18 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>baruchlogic</title>
+
+    @include('layouts.head')
+
+
+
+
   </head>
   <body>
 
-    @include('layouts/header')
-    <div class="bigContainer">
-
+    @include('/layouts/header')
 
     @yield('content')
 
-  </div>
+    @include('/layouts/footer')
 
-    @include('layouts/footer')
+
 
   </body>
 </html>

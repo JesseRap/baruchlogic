@@ -1,7 +1,3 @@
-@extends('/layouts/master')
-
-@section('content')
-
 <main class="home main main--home">
 
   <p class="home__textRow textRow"><b>
@@ -45,5 +41,3 @@
   </b></p>
 
 </main>
-
-@endsection('content')

@@ -1,10 +1,12 @@
+
+
 <!-- FONTS -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300" rel="stylesheet">
 
 <!-- PROJECT CSS -->
-<link rel="stylesheet" href=/css/styles.css >
+<link rel="stylesheet" href="{{ asset('css/app.css')}}" >
 <!-- <link rel="stylesheet" href=/styles/css/videostyles.css > -->
 
 <!-- BOOTSTRAP & JQUERY -->
@@ -27,4 +29,4 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
 crossorigin="anonymous"></script>
 
 <!-- HEADER-SPECIFIC JS -->
-<script src="/js/loginButton.js" defer></script>
+<script src="{{ asset('js/loginButton.js') }}" defer></script>

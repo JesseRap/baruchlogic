@@ -1,0 +1,667 @@
+//
+// // Fonts
+// @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//
+// // Variables
+// @import "variables";
+//
+// // Bootstrap
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// $bgcolor: #0BB212
+$bgcolor: #0BF212
+$bgcolor_lighter: lighten($bgcolor, 15%)
+$textColor: white
+$bodyTextColor: #011033
+$accentColor: #013303
+$nSquares: 8
+$nAngle: 360 / $nSquares
+$break-small: 500px
+
+
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+
+body
+  width: 100%
+  height: calc(100% - 80px)
+  overflow-x: hidden
+
+
+html
+  height: 100%
+
+.nowrap
+  white-space: nowrap
+
+.underline
+  text-decoration: underline
+
+
+
+
+.cell--active, .cell--clicked
+  background-color: rgba(210,210,240,0.5)
+
+
+
+.checkAnswerContainer
+  display: flex
+  justify-content: space-around
+  align-items: center
+  height: 100px
+
+
+.example
+  text-align: center
+  margin: 0 10% 0 10%
+  width: 80%
+
+.form
+  margin: 40px
+  padding: 40px
+  box-shadow: 0 0 5px 5px lighten(#0BB212, 50%)
+  color: darken(#0BB212, 10%)
+  display: flex
+  flex-direction: column
+  align-items: center
+
+
+
+
+
+
+// ABOUT PAGE
+
+.about
+  font-size: calc(1.2em + 2vw)
+  text-align: center
+  padding: 30px
+  overflow: hidden
+  min-height: 500px
+  background-color: lighten($bgcolor, 55%)
+
+
+
+
+
+// BIGCONTAINER IS A WRAPPER FOR THE SIDEBAR AND MAIN CONTENT
+
+.bigContainer
+  width: 100%
+  min-height: calc(100vh - 75px)
+  display: flex
+  align-content: stretch
+  @media (max-width: $break-small)
+    flex-direction: column
+
+
+
+
+
+// CIRCLE (APPEARS IN SIDEBAR)
+
+
+.circle
+  box-sizing: content-box
+  width: 10px
+  height: 10px
+  min-width: 10px
+  min-height: 10px
+  border-radius: 50%
+  border: 2px solid $bgcolor
+
+
+.circle--unwatched
+  background-color: white
+
+
+.circle--watched
+  background-color: black
+
+
+
+
+
+
+
+// HEADER
+
+.header
+  display: flex
+  justify-content: space-around
+  align-items: center
+  font-size: 20px
+  background-color: $bgcolor
+  border-bottom: 5px solid darken($bgcolor, 15%)
+
+.header__loginButton
+  position: absolute
+  right: 10px
+
+.header__menuIcon
+  position: absolute
+  left: 10px
+  @media screen and (min-width: 900px)
+    visibility: hidden
+
+.header__modal
+  position: absolute
+  right: 10px
+
+.header__navMenu
+  padding: 10px 0 10px 0
+
+
+
+
+// HOME PAGE MAIN TEXT
+
+.home
+  text-align: center
+  font-size: 3em
+  color: $bodyTextColor
+  width: 100%
+  height: 100%
+  overflow: hidden
+  display: flex
+  justify-content: center
+  flex-direction: column
+
+.home__textRow
+  cursor: default
+  position: relative
+
+.home__textRow
+  span:not(.textRow__mainText),
+    color: rgba(0,0,0,0.15)
+  &:nth-child(1)
+    .textRow__centerText > span:nth-child(1)
+      position: absolute
+      left: -1554.660px
+    .textRow__centerText > span:nth-child(3)
+      position: absolute
+      left: 0
+  &:nth-child(2)
+    .textRow__centerText > span:nth-child(1)
+      position: absolute
+      left: -1411.920px
+    .textRow__centerText > span:nth-child(3)
+      position: absolute
+      left: 0
+  &:nth-child(3)
+    .textRow__centerText > span:nth-child(1)
+      position: absolute
+      left: -1567.160px
+    .textRow__centerText > span:nth-child(3)
+      position: absolute
+      left: 261.83px
+  &:nth-child(4)
+    .textRow__centerText > span:nth-child(1)
+      position: absolute
+      left: -1530.830px
+    .textRow__centerText > span:nth-child(3)
+      position: absolute
+      left: 0
+  &:nth-child(5)
+    .textRow__centerText > span:nth-child(1)
+      position: absolute
+      left: -1504.520px
+    .textRow__centerText > span:nth-child(3)
+      position: absolute
+      left: 0
+
+
+
+
+
+// LOGIN BUTTON
+
+.loginButton__modal
+  width: 150px
+  height: 30px
+  background-color: lighten($bgcolor, 30%)
+  text-align: center
+  border-radius: 5px
+
+.loginButton__modal--hidden
+  visibility: hidden
+
+
+
+
+
+
+// MAIN CONTENT
+
+.main
+  font-family: 'Karla', sans-serif
+  text-align: center
+  padding: 20px
+  width: 100%
+  @media (max-width: $break-small)
+    padding: 10px
+
+
+
+
+// MULTICHOICE
+
+.multichoice__input
+  margin-left: 10px
+
+
+// NAVIGATION MENU
+
+.navMenu
+  cursor: default
+  position: relative
+  display: flex
+  text-align: center
+  padding: 10px 0 10px 0
+  margin: auto
+  font-family: 'Alegreya Sans', sans-serif
+  @media screen and (max-width: 900px)
+    flex-direction: column
+
+.navMenu__anchor
+  color: white
+  cursor: pointer
+  &:hover
+    color: yellow
+  &:hover
+    text-decoration: none
+
+.navMenu__item
+  margin: 0 10px 0 10px
+  white-space: nowrap
+  color: white
+  position: relative
+
+.navMenu__item:not(:last-child)::after
+  @media screen and (min-width: 900px)
+    content: "|"
+    position: absolute
+    right: -13px
+
+
+
+.navMenu__anchor, .menu a:visited, .menu:link, .menu:active
+  text-decoration: none
+
+
+
+
+
+
+// PROBLEM
+
+.problem
+  padding: 10px
+  @media (max-width: $break-small)
+    padding: 0
+
+// PROBLEMSET
+
+.problemset__button
+  background-color: rgba(200,200,250,0.5)
+
+
+
+
+
+
+
+
+// SIDEBAR
+
+.sidebar
+  min-width: 250px
+  width: 250px
+  border-right: 5px solid darken($bgcolor, 15%)
+  color: darken($bgcolor, 10%)
+  // padding: 10px
+  overflow: hidden
+  position: relative
+  background-color: lighten($bgcolor, 55%)
+  @media (max-width: $break-small)
+    min-width: 0
+    width: 100%
+    border-right: 0px
+    border-bottom: 5px solid darken($bgcolor, 15%)
+    padding: 0px
+
+.sidebar__accordionBtn
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  height: 45px
+  background-color: darken($bgcolor, 15%)
+  color: white
+  text-align: center
+  cursor: pointer
+  padding: 0
+  margin: 0
+  @media (min-width: $break-small)
+    display: none
+
+.sidebar__accordionBtn::after
+  content: "CLOSE"
+  position: absolute
+  top: 10px
+  left: calc(50% - 23px)
+
+.sidebar__checkbox
+  opacity: 0
+  height: 0
+
+.sidebar__checkbox:checked ~ .sidebar__accordionBtn::after
+  content: "OPEN"
+
+.sidebar__checkbox:checked ~ .sidebar__container
+  max-height: 0px
+  margin-bottom: 0
+
+.sidebar__circleContainer
+  width: 10px
+  margin-top: -2px
+
+.sidebar__container
+  max-height: 400px
+  transition: max-height .5s, margin-bottom .5s
+  margin: 0 10px 60px 10px
+
+.sidebar__container *
+  font-family: 'Poppins', sans-serif
+
+.sidebar__content
+  margin-bottom: 10px
+  padding-left: 15px
+  margin-left: 7px
+  display: flex
+
+.sidebar__content > div
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+.sidebar__itemNum
+  width: 20px
+  text-align: right
+  margin-right: 10px
+
+.sidebar__link
+  line-height: 20px
+
+.sidebar__truthtable
+  text-align: center
+
+.sidebar__unit
+  margin-bottom: 15px
+
+
+
+
+
+
+
+
+
+
+// TEXT ROW
+
+.textRow__centerText
+  position: relative
+
+.textRow__mainText
+  color: black
+
+
+
+
+
+
+// LOGIN FORM
+
+
+.loginForm
+  // border: 1px solid black
+  margin: 40px
+  padding: 40px
+  box-shadow: 0 0 5px 5px lighten(#0BB212, 50%)
+  color: darken(#0BB212, 10%)
+  display: flex
+  flex-direction: column
+  align-items: center
+
+
+.loginForm label
+  margin-bottom: -10px
+
+
+.loginForm span
+  margin: 0 10px 0 10px
+
+
+.loginForm__fields
+  display: flex
+  width: 100%
+  flex-wrap: wrap
+  justify-content: center
+
+
+.loginForm__submit
+  background-color: lighten($bgcolor, 50%)
+  color: $bgcolor
+  width: 80px
+  // border-radius: 5px
+  margin-top: 15px
+  border: 0px
+  box-shadow: inset 0 0 2px 1px darken($bgcolor, 0%)
+
+
+
+
+.mainContainer
+  display: flex
+  flex-direction: column
+
+
+
+
+
+.menu--modal
+  display: flex
+  flex-direction: column
+  width: 200px
+  position: absolute
+  background: white
+
+
+.myHeader
+  width: 100%
+  height: 80px
+  display: flex
+  justify-content: space-around
+  align-items: center
+  font-size: 20px
+
+
+.removeRowButton
+  cursor: default
+
+.naturalDeduction__input__container
+  width: 350px
+  margin: auto
+  box-shadow: 0 0 5px 5px lighten(#0BB212, 50%)
+  padding: 20px
+  margin-top: 30px
+  margin-bottom: 30px
+
+.naturalDeduction__input__div
+  display: flex
+  width: 100%
+
+.naturalDeduction__input__div > div
+  width: 50%
+  &:first-child
+    text-align: right
+
+.naturalDeduction__input--select
+  width: calc(100% - 120px)
+
+
+
+.naturalDeduction__prompt
+  width: 200px
+  margin: auto
+  text-align: left
+  box-shadow: 0 0 5px 5px lighten(#0BB212, 50%)
+  padding-left: 50px
+  margin-bottom: 30px
+
+
+.naturalDeduction__table *
+  text-align: center
+
+.naturalDeduction__table th
+  &:first-child
+    width: 30px
+  &:nth-child(2)
+    width: 200px
+  &:nth-child(3)
+    width: 100px
+  &:nth-child(4)
+    width: 50px
+  &:nth-child(5)
+    width: 20px
+    min-width: 20px
+
+.naturalDeduction__table__container
+  padding: 20px
+  box-shadow: 0 0 5px 5px lighten(#0BB212, 50%)
+  margin: auto
+  width: 400px
+  @media (max-width: $break-small)
+    box-shadow: 0px 5px 5px 2px lighten(#0BB212, 50%), 0px -5px 5px 2px lighten(#0BB212, 50%)
+    font-size: 0.8em
+    margin: 0
+
+
+.naturalDeduction__table td:not(:last-child)
+  border: 1px solid black
+
+
+.naturalDeduction__row--justified
+  background-color: white
+
+
+.naturalDeduction__row--notJustified > *:not(:last-child)
+  background-color: lightgrey
+
+
+
+.noHover
+  opacity: 0.5 !important
+  cursor: default !important
+  pointer-events: none !important
+
+
+
+
+
+fieldset
+  border: 5px solid red
+
+
+
+.patterns__pattern
+  width: 400px
+  height: 400px
+  position: absolute
+  left: 300px
+  top: 300px
+  filter: blur(3px)
+  background: linear-gradient(to top left, rgba(#011033, 0.6), rgba(#015463, 0.1))
+  transform-origin: bottom right
+  @for $i from 1 through $nSquares
+    &:nth-child(#{$i})
+      transform: rotate(#{$i*$nAngle}deg) scale(calc(1 - #{$i/$nSquares}))
+
+
+
+
+
+
+
+
+
+
+.semiopaque
+  opacity: 0.2
+
+
+// TRUTH TABLES
+
+.table--class
+  overflow: scroll
+
+.title
+  cursor: default
+
+
+.tree
+  position: relative
+  padding-top: 20px
+
+
+.tree img
+  width: 100%
+  max-width: 500px
+
+
+.tree::after
+  content: ''
+  width: 100%
+  height: 50%
+  left: 0
+  background: linear-gradient(to top, white, white 60%, rgba(255,255,255,0))
+  position: absolute
+  top: 50%
+
+
+.truthTable
+  display: flex
+  flex-wrap: wrap
+  min-width: 200px
+  min-height: 200px
+  margin: auto
+  cursor: default
+  // border: 10px solid red
+  box-shadow: 0 0 5px 5px lighten(#0BB212, 30%)
+  padding: 10px
+  margin: 10px
+  justify-content: center
+
+
+.truthTableCell
+  text-align: center
+  border-bottom: 1px solid blue
+  height: 25px
+
+
+.truthTableColumn
+  padding: 0 5px 0 5px
+  border: 1px solid blue
+
+
+
+
+.x-span
+  cursor: pointer

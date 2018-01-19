@@ -1,31 +1,16 @@
-
-<head>
-
-  @include('layouts/head')
-
-
-</head>
-
-
-
-<body>
-
   <!-- HEADER -->
 
   <header class="header">
 
-    <?php $url = url()->current(); ?>
-
     <!-- MENU ICON -->
 
-    <!-- <div class="header__menuIcon">
-      <img src="/resources/images/menu-icon.png" alt="">
-    </div> -->
 
 
     <!-- NAVIGATION MENU -->
 
     <nav class="navMenu header__navMenu" aria-label="Main Navigation">
+
+      <?php $url = url()->current(); ?>
 
       <div class="navMenu__item">
 
@@ -76,17 +61,22 @@
 
 
 
+
     <!-- LOGIN ICON & MODAL -->
 
-
     <div class="loginButton header__loginButton">
-      <img src="/images/user-icon.png" alt="login icon">
-      <div class="loginButton__modal header__modal loginButton__modal--hidden">
-
-      </div>
-    </div>
+          <img src="/images/user-icon.png" alt="login icon">
+          <div class="loginButton__modal header__modal loginButton__modal--hidden">
+            @if (session('key'))
+              Welcome,john
+            @elseif (session('adminkey'))
+              Welcome, jane
+            @else
+              <a href="/login">Sign In</a>
+            @endif
+          </div>
+        </div>
 
 
 
   </header>
-</body>

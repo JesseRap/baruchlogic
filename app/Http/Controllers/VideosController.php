@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use Illuminate\Http\Request;
 
 class VideosController extends Controller
 {
@@ -11,13 +11,29 @@ class VideosController extends Controller
 
       $allVideos = \DB::table('videos')->get();
 
-      $numVideos = \DB::table('videos')->count();
+      $numVideos = \DB::table('videos')->groupBy('unit')->distinct()->count();
 
-      echo $numVideos;
 
       return view('videos/index', [
         'allVideos' => $allVideos,
-        'numUnits' => 4
+        'numUnits' => $numVideos,
+        'currentVideo' => NULL
       ]);
+    }
+
+    public function video($shortTitle)
+    {
+      $currentVideo = \DB::table('videos')->where('short_title', '=', $shortTitle)->get();
+
+      $numVideos = \DB::table('videos')->groupBy('unit')->distinct()->count();
+
+      dd($currentVideo);
+
+      return view('videos/index', [
+        'allVideos' => $allVideos,
+        'numUnits' => $numVideos,
+        'currentVideo' => $currentVideo
+      ]);
+
     }
 }
