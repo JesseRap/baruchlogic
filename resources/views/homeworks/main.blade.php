@@ -2,9 +2,9 @@
 <script type="text/javascript" src="{{asset('/js/truthTable.js')}}"></script>
 
 
-@if ($currentProblemset == NULL)
+@if ($currentProblemset !== NULL)
 
-@else
+
   <div class="main problemset">
 
 
@@ -28,7 +28,7 @@
 
         <h4>1</h4>
 
-        @include('/layouts/problemTemplates/$problem.problem_type.php')
+        @include('/layouts/problemTemplates/'. $problem.problem_type . '.php')
       </div>
 
 

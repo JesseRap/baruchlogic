@@ -44,6 +44,16 @@
 
       <div class="navMenu__item">
 
+        @if ($url != "http://baruchlogic.test/exercises")
+          <a class="navMenu__anchor" href="/exercises">Exercises</a>
+        @else
+        Exercises
+        @endif
+
+      </div>
+
+      <div class="navMenu__item">
+
         @if ($url != "http://baruchlogic.test/Homework")
           <a class="navMenu__anchor" href="/homework">Homework</a>
         @else

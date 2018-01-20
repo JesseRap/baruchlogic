@@ -1,0 +1,15 @@
+{
+  "name": "phi1600-js",
+  "version": "1.0.0",
+  "description": "Course website for PHI 1600 - Logic and Moral Reasoning",
+  "main": "exercises-helper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JDR",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-google": "^0.9.1"
+  }
+}

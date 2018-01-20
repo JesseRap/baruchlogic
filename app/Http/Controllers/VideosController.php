@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Video;
+
 class VideosController extends Controller
 {
     public function index($shortTitle = NULL)
     {
 
-      $allVideos = \DB::table('videos')->get();
+      // $allVideos = \DB::table('videos')->get();
+      $allVideos = Video::all();
 
       $numUnits = \DB::table('videos')->groupBy('unit')->distinct()->count();
 

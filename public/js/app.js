@@ -963,8 +963,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-__webpack_require__(42);
-(function webpackMissingModule() { throw new Error("Cannot find module \"/Users/JRap/Documents/PROGRAMMING/PHP/baruchlogic/resources/assets/sass/app.sccs\""); }());
+module.exports = __webpack_require__(42);
 
 
 /***/ }),
