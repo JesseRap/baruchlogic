@@ -31,6 +31,10 @@ Route::get('/homework', 'HomeworksController@index');
 
 Route::get('/exercises', 'ExercisesController@index');
 
-Route::get('/exercises/{name}', 'ExercisesController@index');
+Route::get('/exercises/{name}', 'ExercisesController@show')
+            ->where('name', '^(?!checkAnswers).+');
+
+Route::post('/exercises/checkAnswers', 'ExercisesController@checkAnswers');
+
 
 Route::get('/login', 'LoginController@index');

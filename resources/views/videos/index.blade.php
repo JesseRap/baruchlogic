@@ -9,9 +9,12 @@
 @include('/videos/sidebar')
 
 @if ($currentVideo === NULL)
-@include('/videos/main-empty')
+
+<div class="main videos">
+</div>
 
 @else
+
 @include('/videos/main')
 
 @endif

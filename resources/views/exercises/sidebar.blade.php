@@ -17,11 +17,11 @@
       <h4>UNIT {{$unit}}</h4>
       <?php $idx = 1; ?>
 
-      @foreach ($allProblemsets as $problemset)
-        @if ($problemset->unit === $unit)
+      @foreach ($allExercisesets as $exerciseset)
+        @if ($exerciseset->unit === $unit)
 
 
-          <div class="sidebar__content" data-problemset-name={{$problemset->problemset_name}}>
+          <div class="sidebar__content" data-problemset-name={{$exerciseset->name}}>
 
             <div class="sidebar__circleContainer">
 
@@ -41,7 +41,7 @@
 
 
             <div class="sidebar__link">
-              <a href="/exercises/{{$problemset->problemset_name}}"> {{$problemset->problemset_name_long}}</a>
+              <a href="/exercises/{{$exerciseset->name}}"> {{$exerciseset->name_long}}</a>
             </div>
 
 

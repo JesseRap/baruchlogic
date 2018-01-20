@@ -2,23 +2,22 @@
 <script type="text/javascript" src="{{asset('/js/truthTable.js')}}"></script>
 
 
-
-
 <div class="main problemset">
 
-@if ($currentProblemset !== NULL)
+@if ($exerciseset->exists)
 
   <h3 class="problemset__name">
-    {{$currentProblemset->problemset_name_long}}
+    {{$exerciseset->name_long}}
   </h3>
 
   <div class="problemset__text">
-    {{$currentProblemset->text}}
+    {{$exerciseset->text}}
   </div>
 
   <?php $include_truth_table_logic = FALSE; ?>
 
-  @foreach ($currentProblemsetProblems as $key => $problem)
+  <!-- Must refer to "exercises" as "problems" to reuse problem layouts -->
+  @foreach ($exercisesetExercises as $key => $problem)
 
     @if ($problem->problem_type === 'truthtable')
       <?php $include_truth_table_logic = TRUE; ?>
@@ -40,9 +39,11 @@
   @if ($include_truth_table_logic)
   <script type="text/javascript" src="{{asset('/js/truth-table-exercise-logic.js')}}"></script>
   @endif
+
   <div class="problemset__score">
-    YOUR SCORE IS: <span class="problemset__scoreSpan">percentCorrect</span>
+    YOUR SCORE IS: <span class="problemset__scoreSpan"></span>
   </div>
+
   @endif
 
 </div>

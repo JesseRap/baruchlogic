@@ -10,7 +10,7 @@
 
     <span class="nowrap">
 
-      <input type="radio" class="multichoice__input"
+      <input type="radio" class="multichoice__input js-response"
         name="{{$problem->problem_id}}" value="{{$letter}}"
         data-answer="{{$letter}}">
 
