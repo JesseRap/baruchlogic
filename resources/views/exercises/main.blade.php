@@ -28,7 +28,7 @@
 
       <h4>({{$key + 1}})</h4>
 
-      @include('/layouts/problemTemplates/'. $problem->problem_type)
+      @include('/layouts/problemTemplates/' . $problem->problem_type)
 
     </div>
 
