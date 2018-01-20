@@ -25,10 +25,12 @@ Route::get('/about', 'AboutController@index');
 
 Route::get('/videos', 'VideosController@index');
 
-Route::get('/videos/{shortTitle}', 'VideosController@index');
+Route::get('/videos/{shortTitle}', 'VideosController@show');
 
 Route::get('/homework', 'HomeworksController@index');
 
 Route::get('/exercises', 'ExercisesController@index');
 
 Route::get('/exercises/{name}', 'ExercisesController@index');
+
+Route::get('/login', 'LoginController@index');

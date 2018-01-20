@@ -1,7 +1,7 @@
 <div class="multichoice__container">
 
 
-  {{$problem->prompt}}
+  {!!$problem->prompt!!}
 
 
   <div class="multichoice__choices">

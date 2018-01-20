@@ -8,27 +8,24 @@ use App\Video;
 
 class VideosController extends Controller
 {
-    public function index($shortTitle = NULL)
+    public function index(Video $video)
     {
 
-      // $allVideos = \DB::table('videos')->get();
       $allVideos = Video::all();
 
-      $numUnits = \DB::table('videos')->groupBy('unit')->distinct()->count();
-
-      if ($shortTitle !== NULL)
-      {
-        $currentVideo = \DB::table('videos')->where('short_title', '=', $shortTitle)->get()[0];
-      }
-      else {
-        $currentVideo = NULL;
-      }
+      $numUnits = Video::groupBy('unit')->distinct()->count();
 
       return view('videos/index', [
         'allVideos' => $allVideos,
         'numUnits' => $numUnits,
-        'currentVideo' => $currentVideo
+        'currentVideo' => $video
       ]);
+    }
+
+    public function show($shortTitle)
+    {
+      $video = Video::where('short_title', '=', $shortTitle)->first();
+      return $this->index($video);
     }
 
 

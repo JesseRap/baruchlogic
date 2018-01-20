@@ -1,5 +1,5 @@
 <div class="truefalse--container">
-  {{$problem->prompt}}
+  {!!$problem->prompt!!}
 
 
 <div class="">
