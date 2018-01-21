@@ -1,4 +1,4 @@
-<div class="truefalse--container">
+<div class="truefalse__container">
   {!!$problem->prompt!!}
 
 

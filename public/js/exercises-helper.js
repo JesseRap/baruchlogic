@@ -22,10 +22,17 @@ function getAnswers() {
 
   // Create pipe-separated string of user answers
   let userAnswers = '';
-  $('.js-response:checked, .truthTable').each( (idx, el) => {
+  $('.truefalse__container, .truthTable').each( (idx, el) => {
     console.log(el);
-    if ($(el).hasClass('js-response:checked')) {
-      userAnswers += el.value + '|';
+    if ($(el).hasClass('truefalse__container')) {
+      let response = $(el).find('.js-response:checked')
+      console.log("!");
+      if (response.length) {
+        console.log("RESPONSE", response);
+        userAnswers += response[0].value + '|';
+      } else {
+        userAnswers += 'X|'; // Empty response is marked with an 'X'
+      }
     } else if ($(el).hasClass('truthTable')) {
       console.log("YUP");
       const cells = $(el).find('.js-response-cell');
@@ -75,7 +82,7 @@ function getAnswers() {
     method: 'POST',
     url: '/exercises/checkAnswers',
     beforeSend: () => {
-      // alert('sending POST');
+      alert('sending POST');
     },
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -87,8 +94,20 @@ function getAnswers() {
     // const isLoggedIn = msg[0];
     // msg = msg.slice(1);
     displayScore(msg);
+
+    let userIsLoggedIn;
+    $.ajax({
+      method: 'GET',
+      url: '/authCheck',
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    }).done( (msg) => {
+      userIsLoggedIn = msg === "TRUE" ? true : false;
+    });
+
     if (msg === '100') {
-      if ($_SESSION['loggedin'] === TRUE) {
+      if (userIsLoggedIn) {
         fillInTheCircle(currentExerciseset);
       }
       alert("Congratulations! You solved the problem set.")
@@ -96,9 +115,6 @@ function getAnswers() {
   }).fail( (msg) => {
     alert('Uh oh... Something went wrong. Try your request again.');
   });
-
-  // post('/PHI1600b/public/exercises/checkAnswers',
-  //   {currentExerciseset, userAnswers});
 };
 
 $('.problemset__button').click( ()=> {

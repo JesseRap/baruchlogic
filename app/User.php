@@ -28,4 +28,27 @@ class User extends Authenticatable
        'remember_token',
     ];
 
+
+    public function storeScore($percentCorrect, $exercisesetName)
+    {
+      // $recordQuery = DB::table('exercisesets_scores')
+      //               ->where('exerciseset_name', '=', $exercisesetName)
+      //               ->where('student_key', '=', $this->key);
+      //
+      // $record = $recordQuery->first();
+      //
+      // if ($record) {
+      //   if ($percentCorrect > $recordQuery->select('score')->first()) {
+      //     $record->update(['score' => $percentCorrect]);
+      //   }
+      // } else {
+      //   DB::table('exercisesets_scores')->insert([
+      //     'student_key' => $this->key,
+      //     'score' => $percentCorrect,
+      //     'exerciseset_name' => $exercisesetName
+      //   ]);
+      // }
+      return "HELLO";
+    }
+
 }

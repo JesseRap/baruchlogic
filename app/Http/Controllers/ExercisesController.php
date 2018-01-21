@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Exercise;
 
 use App\Exerciseset;
+
+use App\User;
 
 class ExercisesController extends Controller
 {
@@ -47,7 +51,8 @@ class ExercisesController extends Controller
 
       $correctAnswers = $exerciseset->getAnswers();
 
-
+      // print_r($userAnswers);
+      // return;
 
       $userGrades = array_map( function($el, $idx) use ($correctAnswers) {
         if (strlen($el) === 1) // The solution is selected-response
@@ -58,13 +63,13 @@ class ExercisesController extends Controller
         {
           return $el === $correctAnswers[$idx] ? 1 : 0;
         }
-        else // The problem is a proof
-        {
-          // Build a new proof from the encoded proof, then check if valid
-          $proof = new Proof;
-          $proof->buildProofFromEncodedProof($el);
-          return $proof->checkValidProof($proof->proof, $correctAnswers[$idx]) ? 1 : 0;
-        }
+        // else // The problem is a proof
+        // {
+        //   // Build a new proof from the encoded proof, then check if valid
+        //   $proof = new Proof;
+        //   $proof->buildProofFromEncodedProof($el);
+        //   return $proof->checkValidProof($proof->proof, $correctAnswers[$idx]) ? 1 : 0;
+        // }
       }, $userAnswers, array_keys($userAnswers));
 
 
@@ -72,7 +77,31 @@ class ExercisesController extends Controller
       $percentCorrect = floor((count(array_filter($userGrades, function($el)
         {
           return $el === 1;
-        })) / count($userAnswers)) * 100);
+        })) / count($correctAnswers)) * 100);
+
+
+      if (Auth::check())
+      {
+        // $recordQuery = DB::table('exercisesets_scores')
+        //               ->where('exerciseset_name', '=', $exercisesetName)
+        //               ->where('student_key', '=', $this->key);
+        //
+        // $record = $recordQuery->first();
+        //
+        // if ($record) {
+        //   if ($percentCorrect > $recordQuery->select('score')->first()) {
+        //     $record->update(['score' => $percentCorrect]);
+        //   }
+        // } else {
+        //   DB::table('exercisesets_scores')->insert([
+        //     'student_key' => $this->key,
+        //     'score' => $percentCorrect,
+        //     'exerciseset_name' => $exercisesetName
+        //   ]);
+        // }
+      }
+
+
 
       echo $percentCorrect;
 
