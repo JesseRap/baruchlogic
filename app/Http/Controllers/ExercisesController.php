@@ -12,6 +12,8 @@ use App\Exerciseset;
 
 use App\User;
 
+// use \DB;
+
 class ExercisesController extends Controller
 {
     public function index(Exerciseset $exerciseset)
@@ -82,23 +84,25 @@ class ExercisesController extends Controller
 
       if (Auth::check())
       {
-        // $recordQuery = DB::table('exercisesets_scores')
-        //               ->where('exerciseset_name', '=', $exercisesetName)
-        //               ->where('student_key', '=', $this->key);
-        //
-        // $record = $recordQuery->first();
-        //
-        // if ($record) {
-        //   if ($percentCorrect > $recordQuery->select('score')->first()) {
-        //     $record->update(['score' => $percentCorrect]);
-        //   }
-        // } else {
-        //   DB::table('exercisesets_scores')->insert([
-        //     'student_key' => $this->key,
-        //     'score' => $percentCorrect,
-        //     'exerciseset_name' => $exercisesetName
-        //   ]);
-        // }
+        $recordQuery = \DB::table('exercisesets_scores')
+                      ->where([
+                        ['exerciseset_name', '=', $exercisesetName],
+                        ['student_key', '=', Auth::user()->key]
+                      ]);
+
+        $record = $recordQuery->first();
+
+        if ($record) {
+          if ($percentCorrect > $recordQuery->select('score')->first()) {
+            $record->update(['score' => $percentCorrect]);
+          }
+        } else {
+          \DB::table('exercisesets_scores')->insert([
+            'student_key' => Auth::user()->key,
+            'score' => $percentCorrect,
+            'exerciseset_name' => $exercisesetName
+          ]);
+        }
       }
 
 
