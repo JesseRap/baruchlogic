@@ -18,7 +18,8 @@ class SessionController extends Controller
 
       $key = $request->input('key');
 
-      $user = User::where('key', '=', '$key');
+      $user = User::where('key', $key)->first();
+
 
       // Login the user
       auth()->login($user);

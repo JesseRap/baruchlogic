@@ -77,7 +77,7 @@
       <div class="loginButton__modal header__modal loginButton__modal--hidden">
         @if (Auth::check())
           <div class="">
-            Welcome, Unique Human #{{Auth::user()->nonce}}
+            Welcome, Unique Human #{{Auth::user()->key}}
           </div>
           <div class="">
             <a href="/session/logout">Log Out</a>
