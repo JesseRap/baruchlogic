@@ -48,8 +48,13 @@ class ExercisesController extends Controller
       $correctAnswers = $exerciseset->getAnswers();
 
 
+
       $userGrades = array_map( function($el, $idx) use ($correctAnswers) {
         if (strlen($el) === 1) // The solution is selected-response
+        {
+          return $el === $correctAnswers[$idx] ? 1 : 0;
+        }
+        else if (preg_match('/^[TFX]+$/', $el)) // The solution is a truth table
         {
           return $el === $correctAnswers[$idx] ? 1 : 0;
         }

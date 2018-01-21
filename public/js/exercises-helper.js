@@ -22,8 +22,19 @@ function getAnswers() {
 
   // Create pipe-separated string of user answers
   let userAnswers = '';
-  $('.js-response:checked').each( (idx, el) => {
-    userAnswers += el.value + '|';
+  $('.js-response:checked, .truthTable').each( (idx, el) => {
+    console.log(el);
+    if ($(el).hasClass('js-response:checked')) {
+      userAnswers += el.value + '|';
+    } else if ($(el).hasClass('truthTable')) {
+      console.log("YUP");
+      const cells = $(el).find('.js-response-cell');
+      $(cells).each( (i, cell) => {
+        console.log(cell, cell.innerHTML);
+        userAnswers += cell.innerHTML ? cell.innerHTML : 'X';
+      });
+      userAnswers += '|';
+    }
   });
   // remove trailing pipe
   userAnswers = userAnswers.slice(0,userAnswers.length-1);
@@ -64,7 +75,7 @@ function getAnswers() {
     method: 'POST',
     url: '/exercises/checkAnswers',
     beforeSend: () => {
-      alert('sending POST');
+      // alert('sending POST');
     },
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -73,11 +84,11 @@ function getAnswers() {
   }).done( (msg) => {
     console.log('POST is back ', msg);
     // alert(msg);
-    const isLoggedIn = msg[0];
-    msg = msg.slice(1);
+    // const isLoggedIn = msg[0];
+    // msg = msg.slice(1);
     displayScore(msg);
     if (msg === '100') {
-      if (isLoggedIn === '1') {
+      if ($_SESSION['loggedin'] === TRUE) {
         fillInTheCircle(currentExerciseset);
       }
       alert("Congratulations! You solved the problem set.")
@@ -105,7 +116,7 @@ function fillInTheCircle(videoName) {
  * @return {void} Displays the score on the DOM
  */
 function displayScore(score) {
-  $('.problemset__score__span').html(score + '%');
+  $('.problemset__scoreSpan').html(score + '%');
 }
 
 /**

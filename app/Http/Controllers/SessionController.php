@@ -24,6 +24,8 @@ class SessionController extends Controller
       // Login the user
       auth()->login($user);
 
+      $_SESSION['loggedin'] = TRUE;
+
       return redirect()->home();
 
     }
@@ -31,6 +33,8 @@ class SessionController extends Controller
     public function logout()
     {
       auth()->logout();
+
+      unset($_SESSION['loggedin']);
 
       return redirect()->home();
     }

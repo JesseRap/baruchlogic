@@ -1,7 +1,6 @@
 <div class="truefalse--container">
   {!!$problem->prompt!!}
 
-  dd($problem);
 
 <div class="">
   <input type="radio" class="js-response" name="{{ $problem->id }}" value="T" data-answer="T">
