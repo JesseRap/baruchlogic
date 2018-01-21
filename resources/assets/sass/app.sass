@@ -222,9 +222,9 @@ html
 // LOGIN BUTTON
 
 .loginButton__modal
-  width: 150px
-  height: 30px
-  background-color: lighten($bgcolor, 30%)
+  font-size: 0.8em
+  width: 200px
+  background-color: lighten($bgcolor, 40%)
   text-align: center
   border-radius: 5px
 
@@ -232,7 +232,14 @@ html
   visibility: hidden
 
 
-
+.logo
+  min-width: 250px
+  width: 250px
+  height: 55px
+  text-align: center
+  // border-right: 5px solid darken($bgcolor, 15%)
+  @media (max-width: $break-small)
+    display: none
 
 
 

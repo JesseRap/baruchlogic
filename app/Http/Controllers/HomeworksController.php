@@ -21,6 +21,7 @@ class HomeworksController extends Controller
 
       $problemsetProblems = $problemset->getProblems();
 
+      $problemsetsSolvedByUser = NULL;
 
       if (Auth::check())
       {

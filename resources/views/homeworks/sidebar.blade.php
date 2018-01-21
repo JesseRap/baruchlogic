@@ -22,9 +22,15 @@
         <div class="sidebar__content">
 
           <div class="sidebar__circleContainer">
-            <div class="circle circle--unwatched">
-                </div>
-              </div>
+
+            @if (!is_null($problemsetsSolvedByUser) &&
+              in_array($problemset->name, $problemsetsSolvedByUser))
+            <div class="circle circle--watched"></div>
+            @else
+            <div class="circle circle--unwatched"></div>
+            @endif
+
+          </div>
 
               <div>
                 <div class="nowrap sidebar__itemNum">

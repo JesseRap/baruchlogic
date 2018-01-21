@@ -27,6 +27,8 @@ class ExercisesController extends Controller
 
       $exercisesetExercises = $exerciseset->getExercises();
 
+      $exercisesetsSolvedByUser = NULL;
+
       if (Auth::check())
       {
         $exercisesetsSolvedByUser =

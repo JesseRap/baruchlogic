@@ -15,7 +15,6 @@
     <div class="sidebar__unit">
 
       <h4>UNIT {{$unit}}</h4>
-      <?php $idx = 1; ?>
 
       @foreach ($allExercisesets as $exerciseset)
         @if ($exerciseset->unit === $unit)
@@ -26,7 +25,8 @@
             <div class="sidebar__circleContainer">
 
 
-                @if (in_array($exerciseset->name, $exercisesetsSolvedByUser))
+                @if (!is_null($exercisesetsSolvedByUser) &&
+                  in_array($exerciseset->name, $exercisesetsSolvedByUser))
                   <div class="circle circle--watched"></div>
                 @else
                   <div class="circle circle--unwatched"></div>
@@ -36,8 +36,7 @@
 
             <div>
               <div class="nowrap sidebar__itemNum">
-                {{$idx}}
-                <?php $idx = $idx + 1; ?>
+                {{$loop->iteration}}
               </div>
             </div>
 

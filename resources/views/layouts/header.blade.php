@@ -4,7 +4,9 @@
 
     <!-- MENU ICON -->
 
-
+<!-- <div class="logo">
+  baruchlogic
+</div> -->
 
     <!-- NAVIGATION MENU -->
 

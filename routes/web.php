@@ -41,8 +41,15 @@ Route::post('/exercises/checkAnswers', 'ExercisesController@checkAnswers');
 
 Route::get('/login', 'LoginController@index');
 
-Route::post('/session', 'SessionController@login');
+Route::post('/session/login', 'SessionController@login');
 
 Route::get('/session/logout', 'SessionController@logout');
 
 Route::get('/authCheck', function() {echo Auth::check() ? 'TRUE' : 'FALSE';});
+
+
+Route::get('/admin/login', 'AdminLoginController@index');
+
+Route::post('/admin/login', 'AdminLoginController@login');
+
+Route::get('/admin', 'AdminController@index')->name('dashboard');
