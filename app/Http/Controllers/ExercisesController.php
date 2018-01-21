@@ -25,12 +25,28 @@ class ExercisesController extends Controller
 
       $exercisesetExercises = $exerciseset->getExercises();
 
+      if (Auth::check())
+      {
+        $exercisesetsSolvedByUser =
+          Exerciseset::join('exercisesets_scores',
+                            'exercisesets.name',
+                            '=',
+                            'exercisesets_scores.exerciseset_name')
+                            ->where([
+                              ['student_key', '=', Auth::user()->key],
+                              ['score', '=', 100]
+                            ])
+                            ->pluck('exerciseset_name')->toArray();
+      }
+
+
 
       return view('exercises/index', [
         'allExercisesets' => $allExercisesets,
         'numUnits' => $numUnits,
         'exerciseset' => $exerciseset,
-        'exercisesetExercises' => $exercisesetExercises
+        'exercisesetExercises' => $exercisesetExercises,
+        'exercisesetsSolvedByUser' => $exercisesetsSolvedByUser
       ]);
     }
 
@@ -93,8 +109,8 @@ class ExercisesController extends Controller
         $record = $recordQuery->first();
 
         if ($record) {
-          if ($percentCorrect > $recordQuery->select('score')->first()) {
-            $record->update(['score' => $percentCorrect]);
+          if ($percentCorrect > $recordQuery->select('score')->first()->score) {
+            $recordQuery->update(['score' => $percentCorrect]);
           }
         } else {
           \DB::table('exercisesets_scores')->insert([

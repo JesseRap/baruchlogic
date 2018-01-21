@@ -26,9 +26,11 @@
             <div class="sidebar__circleContainer">
 
 
-
-                  <div class="circle circle--unwatched">
-                  </div>
+                @if (in_array($exerciseset->name, $exercisesetsSolvedByUser))
+                  <div class="circle circle--watched"></div>
+                @else
+                  <div class="circle circle--unwatched"></div>
+                @endif
 
             </div>
 

@@ -77,6 +77,17 @@ function getAnswers() {
   // console.log('userAnswers', userAnswers);
   const currentExerciseset = getCurrentProblemSet();
   console.log(currentExerciseset);
+  var userIsLoggedIn;
+
+  $.ajax({
+    method: 'GET',
+    url: '/authCheck',
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }).done( (msg) => {
+    userIsLoggedIn = msg === "TRUE" ? true : false;
+  });
 
   $.ajax({
     method: 'POST',
@@ -95,18 +106,9 @@ function getAnswers() {
     // msg = msg.slice(1);
     displayScore(msg);
 
-    let userIsLoggedIn;
-    $.ajax({
-      method: 'GET',
-      url: '/authCheck',
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    }).done( (msg) => {
-      userIsLoggedIn = msg === "TRUE" ? true : false;
-    });
-
     if (msg === '100') {
+      console.log("USERRRR", userIsLoggedIn);
+
       if (userIsLoggedIn) {
         fillInTheCircle(currentExerciseset);
       }
