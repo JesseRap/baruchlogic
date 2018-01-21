@@ -29,6 +29,8 @@ Route::get('/videos/{shortTitle}', 'VideosController@show');
 
 Route::get('/homework', 'HomeworksController@index');
 
+Route::get('/homework/{name}', 'HomeworksController@show');
+
 Route::get('/exercises', 'ExercisesController@index');
 
 Route::get('/exercises/{name}', 'ExercisesController@show')

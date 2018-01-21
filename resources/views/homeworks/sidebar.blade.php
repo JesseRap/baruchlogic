@@ -7,12 +7,10 @@
   </label>
 
 
-  <?php $num_units = \DB::table('videos')->select('unit')->distinct()->count() ?>
-
   <div class="sidebar__container">
 
 
-  @foreach (range(1, $num_units) as $unit)
+  @foreach (range(1, $numUnits) as $unit)
 
   <div class="sidebar__unit">
 
@@ -35,7 +33,7 @@
               </div>
 
               <div class="sidebar__link">
-                <a href="/homework/">{{$problemset->problemset_name_long}}</a>
+                <a href="/homework/{{$problemset->name}}">{{$problemset->name_long}}</a>
               </div>
 
 

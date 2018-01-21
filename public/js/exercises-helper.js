@@ -22,10 +22,11 @@ function getAnswers() {
 
   // Create pipe-separated string of user answers
   let userAnswers = '';
-  $('.truefalse__container, .truthTable').each( (idx, el) => {
+  $('.truefalse__container, .truthTable, .multichoice__choices',).each( (idx, el) => {
     console.log(el);
+
     if ($(el).hasClass('truefalse__container')) {
-      let response = $(el).find('.js-response:checked')
+      const response = $(el).find('.js-response:checked');
       console.log("!");
       if (response.length) {
         console.log("RESPONSE", response);
@@ -33,6 +34,7 @@ function getAnswers() {
       } else {
         userAnswers += 'X|'; // Empty response is marked with an 'X'
       }
+
     } else if ($(el).hasClass('truthTable')) {
       console.log("YUP");
       const cells = $(el).find('.js-response-cell');
@@ -41,6 +43,14 @@ function getAnswers() {
         userAnswers += cell.innerHTML ? cell.innerHTML : 'X';
       });
       userAnswers += '|';
+
+    } else if ($(el).hasClass('multichoice__choices')) {
+      const response = $(el).find('.js-response:checked');
+      if (response.length) {
+        userAnswers += response[0].value + '|';
+      } else {
+        userAnswers += 'X|'; // Empty response is marked with an 'X'
+      }
     }
   });
   // remove trailing pipe
