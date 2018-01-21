@@ -36,33 +36,19 @@ class ExercisesController extends Controller
 
     }
 
-    public function checkAnswers() {
+    public function checkAnswers(Request $request) {
 
-      echo "GREAT";
 
-      // $this->model = $this->model('exercise');
-      //
-      // // Get the user's response
-      // $userAnswers = array();
-      // if (!isset($_POST) || $_POST === []) {
-      //   echo "ERROR! NO POST!";
-      //   print_r($_POST);
-      //   exit();
-      // } else {
-      //   $userAnswers = explode('+', $_POST['userAnswers']);
-      // }
-      //
-      // // Get the correct answers
-      // $current_problemset = $_POST['currentProblemset'];
-      // $correctAnswer = $this->model->getAnswersToProblemset($current_problemset);
-      // // Map the answers to a flat array
-      // function x($n) {return $n['answers'];};
-      // $answerArray = array_map(function($el)
-      //   {
-      //     return $el['answers'];
-      //   }, $correctAnswer);
-      // $answerArrayFlat = call_user_func_array('array_merge', array_map('str_split', $answerArray));
-      //
+      $userAnswers = $request->input('userAnswers');
+      $userAnswers = explode("|", $userAnswers);
+
+      $exercisesetName = $request->input('currentExerciseset');
+      $exerciseset = Exerciseset::where('name', '=', $exercisesetName)->first();
+
+      $correctAnswers = $exerciseset->getAnswers();
+
+      print_r($correctAnswers);
+
       // // Compare the user responses to the correct answer
       // $userGrades = array_map(function($el, $idx) use ($answerArrayFlat)
       //   {

@@ -19,11 +19,14 @@ function getCurrentProblemSet() {
 function getAnswers() {
   console.log('GET ANSWERS');
 
-  let userAnswers = '';
 
+  // Create pipe-separated string of user answers
+  let userAnswers = '';
   $('.js-response:checked').each( (idx, el) => {
-    userAnswers += el.value;
-  })
+    userAnswers += el.value + '|';
+  });
+  // remove trailing pipe
+  userAnswers = userAnswers.slice(0,userAnswers.length-1);
 
   console.log(userAnswers);
 
@@ -54,8 +57,8 @@ function getAnswers() {
   //                               // input[type="radio"]:checked'))
   // //                           .map( (o) => $(o).data('answer') ).join('');
   // console.log('userAnswers', userAnswers);
-  const currentProblemset = getCurrentProblemSet();
-  console.log(currentProblemset);
+  const currentExerciseset = getCurrentProblemSet();
+  console.log(currentExerciseset);
 
   $.ajax({
     method: 'POST',
@@ -66,7 +69,7 @@ function getAnswers() {
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-    data: {currentProblemset, userAnswers},
+    data: {currentExerciseset, userAnswers},
   }).done( (msg) => {
     console.log('POST is back ', msg);
     // alert(msg);
@@ -75,7 +78,7 @@ function getAnswers() {
     displayScore(msg);
     if (msg === '100') {
       if (isLoggedIn === '1') {
-        fillInTheCircle(currentProblemset);
+        fillInTheCircle(currentExerciseset);
       }
       alert("Congratulations! You solved the problem set.")
     }
@@ -84,7 +87,7 @@ function getAnswers() {
   });
 
   // post('/PHI1600b/public/exercises/checkAnswers',
-  //   {currentProblemset, userAnswers});
+  //   {currentExerciseset, userAnswers});
 };
 
 $('.problemset__button').click( ()=> {

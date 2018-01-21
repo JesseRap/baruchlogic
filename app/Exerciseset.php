@@ -24,4 +24,15 @@ class Exerciseset extends Model
       return $exercises;
 
     }
+
+    public function getAnswers()
+    {
+      $exercises = $this->getExercises();
+
+      $answers = $exercises->pluck('answers');
+
+      return $answers;
+
+
+    }
 }
