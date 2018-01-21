@@ -2,7 +2,7 @@
 <script type="text/javascript" src="{{asset('/js/truthTable.js')}}"></script>
 
 
-@if ($problemset !== NULL)
+@if ($problemset->exists)
 
 
   <div class="main problemset">
@@ -26,7 +26,7 @@
 
       <div class="problem">
 
-        <h4>({{$loop->index}})</h4>
+        <h4>({{$loop->iteration}})</h4>
 
         @include('/layouts/problemTemplates/'. $problem->type)
       </div>
@@ -50,5 +50,5 @@
 
   @endif
 
-}
+
 @endif

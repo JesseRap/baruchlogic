@@ -99,6 +99,9 @@ function getAnswers() {
     userIsLoggedIn = msg === "TRUE" ? true : false;
   });
 
+  const type = window.location.href.split('/')[3];
+  console.log(type);
+
   $.ajax({
     method: 'POST',
     url: '/exercises/checkAnswers',
@@ -108,7 +111,7 @@ function getAnswers() {
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-    data: {currentExerciseset, userAnswers},
+    data: {currentExerciseset, userAnswers, type},
   }).done( (msg) => {
     console.log('POST is back ', msg);
     // alert(msg);

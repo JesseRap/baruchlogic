@@ -10,6 +10,8 @@ use App\Exercise;
 
 use App\Exerciseset;
 
+use App\Problemset;
+
 use App\User;
 
 // use \DB;
@@ -64,13 +66,25 @@ class ExercisesController extends Controller
       $userAnswers = $request->input('userAnswers');
       $userAnswers = explode("|", $userAnswers);
 
+      $type = $request->input('type');
+
       $exercisesetName = $request->input('currentExerciseset');
-      $exerciseset = Exerciseset::where('name', '=', $exercisesetName)->first();
+      $exerciseset;
+
+
+
+      if ($type === 'exercises')
+      {
+        $exerciseset = Exerciseset::where('name', '=', $exercisesetName)->first();
+      }
+      else if ($type === 'homework')
+      {
+        $exerciseset = Problemset::where('name', '=', $exercisesetName)->first();
+      }
+
 
       $correctAnswers = $exerciseset->getAnswers();
 
-      // print_r($userAnswers);
-      // return;
 
       $userGrades = array_map( function($el, $idx) use ($correctAnswers) {
         if (strlen($el) === 1) // The solution is selected-response
@@ -98,32 +112,61 @@ class ExercisesController extends Controller
         })) / count($correctAnswers)) * 100);
 
 
+
+
       if (Auth::check())
       {
-        $recordQuery = \DB::table('exercisesets_scores')
-                      ->where([
-                        ['exerciseset_name', '=', $exercisesetName],
-                        ['student_key', '=', Auth::user()->key]
-                      ]);
+        if ($type === 'exercises')
+        {
+          $recordQuery = \DB::table('exercisesets_scores')
+                        ->where([
+                          ['exerciseset_name', '=', $exercisesetName],
+                          ['student_key', '=', Auth::user()->key]
+                        ]);
+        }
+        else if ($type === 'homework')
+        {
+          $recordQuery = \DB::table('problemsets_scores')
+                        ->where([
+                          ['problemset_name', '=', $exercisesetName],
+                          ['student_key', '=', Auth::user()->key]
+                        ]);
+        }
 
         $record = $recordQuery->first();
 
-        if ($record) {
+        if (!is_null($record))
+        {
           if ($percentCorrect > $recordQuery->select('score')->first()->score) {
             $recordQuery->update(['score' => $percentCorrect]);
           }
-        } else {
-          \DB::table('exercisesets_scores')->insert([
-            'student_key' => Auth::user()->key,
-            'score' => $percentCorrect,
-            'exerciseset_name' => $exercisesetName
-          ]);
         }
+        else
+        {
+          if ($type === 'exercises')
+          {
+            \DB::table('exercisesets_scores')->insert([
+              'student_key' => Auth::user()->key,
+              'score' => $percentCorrect,
+              'exerciseset_name' => $exercisesetName
+            ]);
+          }
+          elseif ($type === 'homework')
+          {
+            \DB::table('problemsets_scores')->insert([
+              'student_key' => Auth::user()->key,
+              'score' => $percentCorrect,
+              'problemset_name' => $exercisesetName
+            ]);
+          }
+        }
+
       }
 
 
 
       echo $percentCorrect;
+      return;
 
       // // Compare the user responses to the correct answer
       // $userGrades = array_map(function($el, $idx) use ($answerArrayFlat)
