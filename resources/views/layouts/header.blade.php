@@ -77,10 +77,8 @@
     <div class="loginButton header__loginButton">
       <img src="{{asset('/images/user-icon.png')}}" alt="login icon">
       <div class="loginButton__modal header__modal loginButton__modal--hidden">
-        @if (session('key'))
-          Welcome,john
-        @elseif (session('adminkey'))
-          Welcome, jane
+        @if (Auth::check())
+          {{Auth::user()->key}}
         @else
           <a href="/login">Sign In</a>
         @endif

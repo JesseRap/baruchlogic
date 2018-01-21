@@ -4,7 +4,9 @@
 
 <main class="main login">
 
-  <form id='login' class="loginForm" action='login/logUserIn' method='post' accept-charset='UTF-8'>
+  <form id='login' class="loginForm" action='session' method='post' accept-charset='UTF-8'>
+
+    {{ csrf_field() }}
 
     <h4>SIGN IN</h4>
     <input type='hidden' name='submitted' id='submitted' value='1'/>
@@ -14,7 +16,8 @@
 
       <span class="nowrap">
         <label for='key' >Key*:</label>
-        <input type='password' name='key' id='key' maxlength="50" autocomplete="off"/>
+        <input type='password' name='key' id='key' maxlength="50"
+            autocomplete="off" required/>
       </span>
     </div>
 

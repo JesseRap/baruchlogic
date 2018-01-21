@@ -14,7 +14,7 @@
 
 use App\Task;
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::get('/home', 'HomeController@index');
@@ -38,3 +38,7 @@ Route::post('/exercises/checkAnswers', 'ExercisesController@checkAnswers');
 
 
 Route::get('/login', 'LoginController@index');
+
+Route::post('/session', 'SessionController@login');
+
+Route::get('/session', 'SessionController@logout');
