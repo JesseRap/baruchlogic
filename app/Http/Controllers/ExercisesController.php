@@ -47,7 +47,29 @@ class ExercisesController extends Controller
 
       $correctAnswers = $exerciseset->getAnswers();
 
-      print_r($correctAnswers);
+
+      $userGrades = array_map( function($el, $idx) use ($correctAnswers) {
+        if (strlen($el) === 1) // The solution is selected-response
+        {
+          return $el === $correctAnswers[$idx] ? 1 : 0;
+        }
+        else // The problem is a proof
+        {
+          // Build a new proof from the encoded proof, then check if valid
+          $proof = new Proof;
+          $proof->buildProofFromEncodedProof($el);
+          return $proof->checkValidProof($proof->proof, $correctAnswers[$idx]) ? 1 : 0;
+        }
+      }, $userAnswers, array_keys($userAnswers));
+
+
+
+      $percentCorrect = floor((count(array_filter($userGrades, function($el)
+        {
+          return $el === 1;
+        })) / count($userAnswers)) * 100);
+
+      echo $percentCorrect;
 
       // // Compare the user responses to the correct answer
       // $userGrades = array_map(function($el, $idx) use ($answerArrayFlat)
