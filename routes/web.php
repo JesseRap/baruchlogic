@@ -41,4 +41,4 @@ Route::get('/login', 'LoginController@index');
 
 Route::post('/session', 'SessionController@login');
 
-Route::get('/session', 'SessionController@logout');
+Route::get('/session/logout', 'SessionController@logout');

@@ -15,7 +15,7 @@
     <div class="loginForm__fields">
 
       <span class="nowrap">
-        <label for='key' >Key*:</label>
+        <label for='key' >ID*:</label>
         <input type='password' name='key' id='key' maxlength="50"
             autocomplete="off" required/>
       </span>

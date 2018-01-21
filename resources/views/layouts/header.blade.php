@@ -70,15 +70,18 @@
     </nav>
 
 
-
-
     <!-- LOGIN ICON & MODAL -->
 
     <div class="loginButton header__loginButton">
       <img src="{{asset('/images/user-icon.png')}}" alt="login icon">
       <div class="loginButton__modal header__modal loginButton__modal--hidden">
         @if (Auth::check())
-          {{Auth::user()->key}}
+          <div class="">
+            Welcome, Unique Human #{{Auth::user()->nonce}}
+          </div>
+          <div class="">
+            <a href="/session/logout">Log Out</a>
+          </div>
         @else
           <a href="/login">Sign In</a>
         @endif
