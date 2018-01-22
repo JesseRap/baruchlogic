@@ -53,3 +53,5 @@ Route::get('/admin/login', 'AdminLoginController@index');
 Route::post('/session/adminlogin', 'SessionController@adminlogin');
 
 Route::get('/admin', 'AdminController@index')->name('dashboard');
+
+Route::get('/admin/changeNames', 'AdminController@changeNames');

@@ -1,3 +1,5 @@
+@include('layouts/head')
+
 Welcome to the professor admin panel.
 
 
