@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Problem;
+
 class Problemset extends Model
 {
   public function getProblems()
@@ -35,4 +37,5 @@ class Problemset extends Model
     return $answers;
 
   }
+
 }

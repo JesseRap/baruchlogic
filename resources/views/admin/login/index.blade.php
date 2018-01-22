@@ -2,7 +2,7 @@
 
 <main class="main login">
 
-  <form id='login' class="loginForm" action='session/adminlogin' method='post' accept-charset='UTF-8'>
+  <form id='login' class="loginForm" action='../session/adminlogin' method='post' accept-charset='UTF-8'>
 
     {{ csrf_field() }}
 

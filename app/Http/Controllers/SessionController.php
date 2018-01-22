@@ -18,13 +18,15 @@ class SessionController extends Controller
 
       $key = $request->input('key');
 
-      $user = User::where('key', $key)->first();
+      $user = User::where([
+        ['key', '=', $key],
+        ['admin', '=', '0']
+        ])->first();
 
 
       // Login the user
       auth()->login($user);
 
-      $_SESSION['loggedin'] = TRUE;
 
       return redirect()->home();
 
@@ -37,7 +39,7 @@ class SessionController extends Controller
       return redirect()->home();
     }
 
-    public function adminLogin(Request $request)
+    public function adminlogin(Request $request)
     {
       // Validate the form
 
@@ -47,13 +49,23 @@ class SessionController extends Controller
 
       $key = $request->input('key');
 
-      $user = Instructor::where('key', $key)->first();
+      $user = User::where([
+        ['key', '=', $key],
+        ['admin', '=', '1']
+        ])->first();
 
 
       // Login the user
-      auth()->login($user);
+      if (!is_null($user))
+      {
+        auth()->login($user);
+        return redirect()->route('dashboard');
+      }
+      else
+      {
+        return redirect()->home();
+      }
 
-      return redirect()->dashboard();
     }
 
 }

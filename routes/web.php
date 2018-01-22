@@ -50,6 +50,6 @@ Route::get('/authCheck', function() {echo Auth::check() ? 'TRUE' : 'FALSE';});
 
 Route::get('/admin/login', 'AdminLoginController@index');
 
-Route::post('/admin/login', 'AdminLoginController@login');
+Route::post('/session/adminlogin', 'SessionController@adminlogin');
 
 Route::get('/admin', 'AdminController@index')->name('dashboard');
