@@ -106,7 +106,7 @@ function getAnswers() {
     method: 'POST',
     url: '/exercises/checkAnswers',
     beforeSend: () => {
-      alert('sending POST');
+      // alert('sending POST');
     },
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -1,7 +1,22 @@
-@include('layouts/head')
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>baruchlogic</title>
+
+    @include('layouts/head')
+
+
+
+
+  </head>
+  <body>
+
+<main>
 
 Welcome to the professor admin panel.
 
+<a href="/session/logout">Log Out</a>
 
 
 @foreach ($classes as $class)
@@ -54,3 +69,7 @@ $( ()=> {
   displayNames();
 })
 </script>
+
+</main>
+
+</body>
