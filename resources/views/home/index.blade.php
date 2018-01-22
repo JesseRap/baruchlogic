@@ -4,7 +4,7 @@
 
 <main class="home main main--home">
 
-  <p class="home__textRow textRow"><b>
+  <!-- <p class="home__textRow textRow"><b>
     <span class="textRow__centerText">
       <span>odbwzptklnlkssllnvsatdodbwzptklnlkssllnvsatduaahaclbtuvnlgmnvztt</span>
       <span>&nbsp</span>
@@ -42,8 +42,9 @@
       <span>&nbsp</span>
       <span>zponvfhtrgbaoqbldgwdhronybmpwqoivkoiqltjhezblpkvzyltbwfmblhy</span>
     </span>
-  </b></p>
+  </b></p> -->
 
 </main>
+
 
 @endsection('content')

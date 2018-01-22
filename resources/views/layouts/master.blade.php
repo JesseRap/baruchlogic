@@ -20,6 +20,7 @@
 
     @include('/layouts/footer')
 
+    <!-- <script type="text/javascript" src="{{asset('/js/alignNames.js')}}" defer></script> -->
 
 
   </body>

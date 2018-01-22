@@ -167,6 +167,8 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background: url(/images/baruchlogictext.png?8d5c599fd2bc5d0ab6647dccf8a61588) no-repeat center center;
+  background-size: 1919px 840px;
 }
 
 .home__textRow {
