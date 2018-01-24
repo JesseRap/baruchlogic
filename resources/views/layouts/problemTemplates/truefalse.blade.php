@@ -3,11 +3,30 @@
 
 
 <div class="">
-  <input type="radio" class="js-response" name="{{ $problem->id }}" value="T" data-answer="T">
-  <label for="contactChoice1">True</label>
 
-  <input type="radio" class="js-response" name="{{ $problem->id }}" value="F" data-answer="F">
-  <label for="contactChoice2">False</label>
+  <form>
+
+    <fieldset>
+
+      <legend>True/False Question</legend>
+
+
+        <input type="radio" class="js-response" name="truefalse"
+          id="{{ $problem->id }}--true" value="T" data-answer="T">
+        <label for="{{ $problem->id }}--true">True</label>
+
+        <input type="radio" class="js-response" name="truefalse"
+          id="{{ $problem->id }}--false" value="F" data-answer="F">
+        <label for="{{ $problem->id }}--false">False</label>
+
+
+    </fieldset>
+
+  </form>
+
+
+
+
 </div>
 
 

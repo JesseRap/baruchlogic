@@ -35,6 +35,15 @@ body
 html
   height: 100%
 
+
+// HACK: HIDE THE FIELDSET LEGENDS FROM VISUAL SCREENS
+legend
+  position: absolute
+  left: -9999px
+  width: 100px
+  height: auto
+  overflow: hidden
+
 .nowrap
   white-space: nowrap
 
@@ -78,7 +87,7 @@ html
 // ABOUT PAGE
 
 .about
-  font-size: calc(1.2em + 2vw)
+  font-size: calc(1em + 1.2vw)
   text-align: center
   padding: 30px
   overflow: hidden
@@ -257,7 +266,6 @@ html
 
 
 
-
 // MULTICHOICE
 
 .multichoice__input
@@ -278,7 +286,7 @@ html
     flex-direction: column
 
 .navMenu__anchor
-  color: darken(#0275d8, 5%)
+  color: darken(#0275d8, 10%)
   cursor: pointer
   &:hover
     color: yellow

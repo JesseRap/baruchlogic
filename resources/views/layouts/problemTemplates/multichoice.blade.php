@@ -1,29 +1,38 @@
 <div class="multichoice__container">
 
 
-  {!!$problem->prompt!!}
+  {!! $problem->prompt !!}
 
 
   <div class="multichoice__choices">
 
     <form>
 
+      <fieldset>
 
-  @foreach ($problem->choices_decoded as $letter => $choice)
+        <legend>Multiple Choice Question</legend>
 
-    <span class="nowrap">
+        @foreach ($problem->choices_decoded as $letter => $choice)
 
-      <input type="radio" class="multichoice__input js-response"
-        name="{{ $problem->id }}" value="{{$letter}}" data-answer="{{$letter}}">
+          <span class="nowrap">
 
-      <label class="multichoice__label" for="{{$problem->problem_id}}">
-        {{$choice}}
-      </label>
+            <input type="radio" class="multichoice__input js-response" name="multichoice"
+              id="{{ $problem->id }}--{{ $letter }}" value="{{ $letter }}"
+              data-answer="{{ $letter }}">
 
-    </span>
+            <label class="multichoice__label"
+              for="{{ $problem->id }}--{{ $letter }}">
+              {{ $choice }}
+            </label>
 
-  @endforeach
-</form>
+          </span>
+
+        @endforeach
+
+
+      </fieldset>
+
+    </form>
 
   </div>
 
