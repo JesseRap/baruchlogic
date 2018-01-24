@@ -14,24 +14,24 @@
 
 use App\Task;
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('root');
 
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/about', 'AboutController@index');
+Route::get('/about', 'AboutController@index')->name('about');
 
 
-Route::get('/videos', 'VideosController@index');
+Route::get('/videos', 'VideosController@index')->name('videos');
 
-Route::get('/videos/{shortTitle}', 'VideosController@show');
+Route::get('/videos/{shortTitle}', 'VideosController@show')->name('showVideos');
 
-Route::get('/homework', 'HomeworksController@index');
+Route::get('/homework', 'HomeworksController@index')->name('homework');
 
-Route::get('/homework/{name}', 'HomeworksController@show');
+Route::get('/homework/{name}', 'HomeworksController@show')->name('showHomework');
 
-Route::get('/exercises', 'ExercisesController@index');
+Route::get('/exercises', 'ExercisesController@index')->name('exercises');
 
 Route::get('/exercises/{name}', 'ExercisesController@show')
             ->where('name', '^(?!checkAnswers).+');

@@ -16,8 +16,8 @@
 
       <div class="navMenu__item">
 
-        @if ($url != "http://baruchlogic.test/home")
-          <a class="navMenu__anchor" href="/home">Home</a>
+        @if ($url != route('home'))
+          <a class="navMenu__anchor" href="{{ route('home') }}">Home</a>
         @else
         Home
         @endif
@@ -26,8 +26,8 @@
 
       <div class="navMenu__item">
 
-        @if ($url != "http://baruchlogic.test/about")
-          <a class="navMenu__anchor" href="/about">About</a>
+        @if ($url != route('about'))
+          <a class="navMenu__anchor" href="{{ route('about') }}">About</a>
         @else
         About
         @endif
@@ -36,8 +36,8 @@
 
       <div class="navMenu__item">
 
-        @if ($url != "http://baruchlogic.test/videos")
-          <a class="navMenu__anchor" href="/videos">Videos</a>
+        @if ($url != route('videos'))
+          <a class="navMenu__anchor" href="{{ route('videos') }}">Videos</a>
         @else
         Videos
         @endif
@@ -46,8 +46,8 @@
 
       <div class="navMenu__item">
 
-        @if ($url != "http://baruchlogic.test/exercises")
-          <a class="navMenu__anchor" href="/exercises">Exercises</a>
+        @if ($url != route('exercises'))
+          <a class="navMenu__anchor" href="{{ route('exercises') }}">Exercises</a>
         @else
         Exercises
         @endif
@@ -56,8 +56,8 @@
 
       <div class="navMenu__item">
 
-        @if ($url != "http://baruchlogic.test/Homework")
-          <a class="navMenu__anchor" href="/homework">Homework</a>
+        @if ($url != route('homework'))
+          <a class="navMenu__anchor" href="{{ route('homework') }}">Homework</a>
         @else
         Homework
         @endif
