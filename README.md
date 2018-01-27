@@ -8,4 +8,4 @@ The course features a free textbook, videos, exercises, and homework sections, a
 
 Currently, registration in the course is limited to active students in the class at Baruch college. However, visitors may enjoy all the videos and exercises, although their progress will not be tracked.
 
-The application is written in raw PHP, using the MVC approach, although we are currently migrating it to the Laravel framework. The project follows the BEM methodology of CSS.
+The application is written in PHP, using the Laravel framework. The project follows the BEM methodology of CSS.
