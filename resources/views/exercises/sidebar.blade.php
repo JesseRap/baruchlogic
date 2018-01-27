@@ -17,7 +17,7 @@
       <h4>UNIT {{$unit}}</h4>
 
       @foreach ($allExercisesets as $exerciseset)
-        @if ($exerciseset->unit === $unit)
+        @if ($exerciseset->unit == $unit)
 
 
           <div class="sidebar__content" data-problemset-name={{$exerciseset->name}}>

@@ -17,7 +17,7 @@
   <h4 >UNIT {{$unit}}</h4>
 
     @foreach ($allProblemsets as $key => $problemset)
-      @if ($problemset->unit === $unit)
+      @if ($problemset->unit == $unit)
 
         <div class="sidebar__content">
 
