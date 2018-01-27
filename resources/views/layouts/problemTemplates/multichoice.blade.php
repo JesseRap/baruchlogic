@@ -4,7 +4,6 @@
   {!! $problem->prompt !!}
 
 
-  <div class="multichoice__choices">
 
     <form>
 
@@ -34,7 +33,6 @@
 
     </form>
 
-  </div>
 
 
 </div>

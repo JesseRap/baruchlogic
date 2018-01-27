@@ -1,7 +1,9 @@
 <div class="main videos">
 
 
+
   @if ($currentVideo->exists)
+  
   <h3 class="videos__name">
     {{ $currentVideo->title }}
   </h3>

@@ -12,14 +12,20 @@
 
     <nav class="navMenu header__navMenu" aria-label="Main Navigation">
 
+
+      <!-- CHECK THE URL AND DON'T MAKE A LINK FOR THE CURRENT PAGE -->
+
       <?php $url = url()->current(); ?>
 
       <div class="navMenu__item">
 
         @if ($url != route('home'))
+        @if ($url != route('root'))
+
           <a class="navMenu__anchor" href="{{ route('home') }}">Home</a>
         @else
         Home
+        @endif
         @endif
 
       </div>

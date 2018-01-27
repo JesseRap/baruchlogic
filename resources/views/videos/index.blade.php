@@ -8,16 +8,10 @@
 
 @include('/videos/sidebar')
 
-@if ($currentVideo === NULL)
 
-<div class="main videos">
-</div>
-
-@else
 
 @include('/videos/main')
 
-@endif
 
 </div>
 

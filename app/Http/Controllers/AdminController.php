@@ -23,16 +23,19 @@ class AdminController extends Controller
 
       $instructor = User::where('key', Auth::user()->key)->first();
 
-      $classes = \DB::table('classes')
-                      ->where('instructor_key', $instructor->key)->get();
+      $classes = \DB::table('sections')
+                      ->where('instructor_id', $instructor->id)->get();
 
       $studentKeysInClasses = array();
 
       foreach ($classes as $class) {
         $studentKeysInClasses[$class->course_code] =
-                                  \DB::table('students_in_classes')
-                                      ->where('course_code', $class->course_code)
-                                      ->pluck('student_key')
+                                  \DB::table('users')
+                                      ->where([
+                                        'course_code' => $class->course_code,
+                                        'admin' => 0
+                                      ])
+                                      ->pluck('key')
                                       ->toArray();
 
       }
@@ -83,17 +86,14 @@ class AdminController extends Controller
 
       $instructor = User::where('key', Auth::user()->key)->first();
 
-      $classes = \DB::table('classes')
-                      ->where('instructor_key', $instructor->key)->get();
+      $classes = Section::where('instructor_id', $instructor->id)->get();
 
       $studentKeysInClasses = array();
 
+
       foreach ($classes as $class) {
         $studentKeysInClasses[$class->course_code] =
-                                  \DB::table('students_in_classes')
-                                      ->where('course_code', $class->course_code)
-                                      ->pluck('student_key')
-                                      ->toArray();
+                                  $class->students();
 
       }
 

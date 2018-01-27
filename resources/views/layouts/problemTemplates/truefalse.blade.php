@@ -2,7 +2,6 @@
   {!!$problem->prompt!!}
 
 
-<div class="">
 
   <form>
 
@@ -24,10 +23,6 @@
 
   </form>
 
-
-
-
-</div>
 
 
 </div>

@@ -60,7 +60,7 @@
 <!-- Set up an instance of NaturalDeduction and bind event listeners -->
 <script type="text/javascript">
   ( ()=> {
-    const selector = '.problem--{{loop.index}}';
+    const selector = '.problem--{{$loop->index}}';
     const nd = new NaturalDeduction(selector);
     // bind the submit button to the NaturalDeduction instance
     $(selector + ' button').click( ()=> {nd.onSubmit()});

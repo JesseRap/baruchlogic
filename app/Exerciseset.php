@@ -35,4 +35,5 @@ class Exerciseset extends Model
 
 
     }
+
 }

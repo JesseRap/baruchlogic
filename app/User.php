@@ -29,6 +29,12 @@ class User extends Authenticatable
     ];
 
 
+    public function getClass()
+    {
+      return $this->hasOne('Section');
+    }
+
+
     public function storeScore($percentCorrect, $exercisesetName)
     {
       // $recordQuery = DB::table('exercisesets_scores')

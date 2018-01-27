@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Instructor extends User
+class Instructor extends Authenticatable
 {
 
   use Notifiable;
@@ -29,9 +29,9 @@ class Instructor extends User
      'remember_token',
   ];
 
-  public function getClasses()
-  {
-    return $this->hasMany('App\Class', 'instructor_key', 'key');
-  }
+  // public function getClasses()
+  // {
+  //   return $this->hasMany('App\Class', 'instructor_key', 'key');
+  // }
 
 }
