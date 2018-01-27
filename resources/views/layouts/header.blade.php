@@ -19,13 +19,12 @@
 
       <div class="navMenu__item">
 
-        @if ($url != route('home'))
-        @if ($url != route('root'))
-
-          <a class="navMenu__anchor" href="{{ route('home') }}">Home</a>
+        @if ($url == route('home'))
+          Home
+        @elseif ($url == route('root'))
+          Home
         @else
-        Home
-        @endif
+          <a class="navMenu__anchor" href="{{ route('home') }}">Home</a>
         @endif
 
       </div>

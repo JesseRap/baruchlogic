@@ -10,6 +10,8 @@ use App\User;
 
 use App\Problemset;
 
+use App\Section;
+
 
 class AdminController extends Controller
 {
@@ -22,6 +24,8 @@ class AdminController extends Controller
       }
 
       $instructor = User::where('key', Auth::user()->key)->first();
+
+
 
       $classes = \DB::table('sections')
                       ->where('instructor_id', $instructor->id)->get();
@@ -87,6 +91,7 @@ class AdminController extends Controller
       $instructor = User::where('key', Auth::user()->key)->first();
 
       $classes = Section::where('instructor_id', $instructor->id)->get();
+
 
       $studentKeysInClasses = array();
 

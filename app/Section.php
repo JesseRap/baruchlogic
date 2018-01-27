@@ -8,6 +8,9 @@ class Section extends Model
 {
   public function students()
   {
-    return $this->hasMany('App\User::where("admin", 1)');
+    return User::where([
+                    'course_code' => $this->course_code,
+                    'admin' => 0
+                  ])->pluck('key');
   }
 }
