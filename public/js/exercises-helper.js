@@ -22,7 +22,7 @@ function getAnswers() {
 
   // Create pipe-separated string of user answers
   let userAnswers = '';
-  $('.truefalse__container, .truthTable, .multichoice__choices',).each( (idx, el) => {
+  $('.truefalse__container, .truthTable, .multichoice__container',).each( (idx, el) => {
     console.log(el);
 
     if ($(el).hasClass('truefalse__container')) {
@@ -44,7 +44,7 @@ function getAnswers() {
       });
       userAnswers += '|';
 
-    } else if ($(el).hasClass('multichoice__choices')) {
+    } else if ($(el).hasClass('multichoice__container')) {
       const response = $(el).find('.js-response:checked');
       if (response.length) {
         userAnswers += response[0].value + '|';

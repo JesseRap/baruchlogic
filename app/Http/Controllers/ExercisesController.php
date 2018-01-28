@@ -14,7 +14,8 @@ use App\Problemset;
 
 use App\User;
 
-// use \DB;
+use Carbon\Carbon;
+
 
 class ExercisesController extends Controller
 {
@@ -116,6 +117,8 @@ class ExercisesController extends Controller
 
 
 
+
+
       if (Auth::check())
       {
         if ($type === 'exercises')
@@ -135,11 +138,28 @@ class ExercisesController extends Controller
                         ]);
         }
 
+
         $record = $recordQuery->first();
+
+
+        $dueDate = \DB::table('hw_due_date_pivot')
+                      ->where([
+                        ['problemset_name', '=', $exercisesetName],
+                        ['course_code', '=', Auth::user()->course_code]
+                        ])
+                      ->first()
+                      ->due_date_time;
+
+        $dueDate = Carbon::parse($dueDate, 'America/New_York');
+
+
+
+        $beforeDueDate = Carbon::now('America/New_York') < $dueDate;
+
 
         if (!is_null($record))
         {
-          if ($percentCorrect > $recordQuery->select('score')->first()->score) {
+          if ($percentCorrect > $record->score && $beforeDueDate) {
             $recordQuery->update(['score' => $percentCorrect]);
           }
         }
@@ -153,7 +173,7 @@ class ExercisesController extends Controller
               'exerciseset_name' => $exercisesetName
             ]);
           }
-          elseif ($type === 'homework')
+          elseif ($type === 'homework' && $beforeDueDate)
           {
             \DB::table('problemsets_scores')->insert([
               'student_key' => Auth::user()->key,
