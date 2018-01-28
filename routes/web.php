@@ -39,7 +39,7 @@ Route::get('/exercises/{name}', 'ExercisesController@show')
 Route::post('/exercises/checkAnswers', 'ExercisesController@checkAnswers');
 
 
-Route::get('/login', 'LoginController@index');
+Route::get('/login', 'LoginController@index')->name('login');
 
 Route::post('/session/login', 'SessionController@login');
 

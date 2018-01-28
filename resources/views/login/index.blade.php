@@ -4,6 +4,8 @@
 
 <main class="main login">
 
+  @if (!Auth::check())
+  
   <form id='login' class="loginForm" action='session/login' method='post' accept-charset='UTF-8'>
 
     {{ csrf_field() }}
@@ -26,6 +28,12 @@
 
 
   </form>
+
+  @else
+  <div class="login__message alert alert-success">
+    You are logged in.
+  </div>
+  @endif
 
 </main>
 

@@ -23,12 +23,15 @@ class SessionController extends Controller
         ['admin', '=', '0']
         ])->first();
 
+      if (!is_null($user))
+      {
+        // Login the user
+        auth()->login($user);
+        return redirect()->home();
+      }
+      return redirect()->route('login');
 
-      // Login the user
-      auth()->login($user);
 
-
-      return redirect()->home();
 
     }
 
