@@ -114,6 +114,13 @@ class ExercisesController extends Controller
           return $el === 1;
         })) / count($correctAnswers)) * 100);
 
+        // DON'T RECORD THE EXERCISE SCORES FOR NOW
+      // if ($type === 'exercises')
+      // {
+      //   echo $percentCorrect;
+      //   return;
+      // }
+
 
 
 
@@ -142,26 +149,34 @@ class ExercisesController extends Controller
         $record = $recordQuery->first();
 
 
-        $dueDate = \DB::table('hw_due_date_pivot')
-                      ->where([
-                        ['problemset_name', '=', $exercisesetName],
-                        ['course_code', '=', Auth::user()->course_code]
-                        ])
-                      ->first()
-                      ->due_date_time;
 
-        $dueDate = Carbon::parse($dueDate, 'America/New_York');
-
-
-
-        $beforeDueDate = Carbon::now('America/New_York') < $dueDate;
 
 
         if (!is_null($record))
         {
-          if ($percentCorrect > $record->score && $beforeDueDate) {
-            $recordQuery->update(['score' => $percentCorrect]);
+          if ($type === 'homework')
+          {
+            $dueDate = \DB::table('hw_due_date_pivot')
+                          ->where([
+                            ['problemset_name', '=', $exercisesetName],
+                            ['course_code', '=', Auth::user()->course_code]
+                            ])
+                          ->first()
+                          ->due_date_time;
+
+            $dueDate = Carbon::parse($dueDate, 'America/New_York');
+
+            $beforeDueDate = Carbon::now('America/New_York') < $dueDate;
+            if ($percentCorrect > $record->score && $beforeDueDate) {
+              $recordQuery->update(['score' => $percentCorrect]);
+            }
+          } else
+          {
+            if ($percentCorrect > $record->score) {
+              $recordQuery->update(['score' => $percentCorrect]);
+            }
           }
+
         }
         else
         {
