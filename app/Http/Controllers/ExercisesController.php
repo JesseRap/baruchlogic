@@ -22,7 +22,7 @@ class ExercisesController extends Controller
     public function index(Exerciseset $exerciseset)
     {
 
-      $allExercisesets = Exerciseset::all();
+      $allExercisesets = Exerciseset::orderBy('unit_index')->get();
 
       $numUnits = Exerciseset::select('unit')->distinct()->get()->count();
 
