@@ -17,29 +17,23 @@ function getCurrentProblemSet() {
  * @return {void} Makes POST request with user data
  */
 function getAnswers() {
-  console.log('GET ANSWERS');
 
 
   // Create pipe-separated string of user answers
   let userAnswers = '';
   $('.truefalse__container, .truthTable, .multichoice__container',).each( (idx, el) => {
-    console.log(el);
 
     if ($(el).hasClass('truefalse__container')) {
       const response = $(el).find('.js-response:checked');
-      console.log("!");
       if (response.length) {
-        console.log("RESPONSE", response);
         userAnswers += response[0].value + '|';
       } else {
         userAnswers += 'X|'; // Empty response is marked with an 'X'
       }
 
     } else if ($(el).hasClass('truthTable')) {
-      console.log("YUP");
       const cells = $(el).find('.js-response-cell');
       $(cells).each( (i, cell) => {
-        console.log(cell, cell.innerHTML);
         userAnswers += cell.innerHTML ? cell.innerHTML : 'X';
       });
       userAnswers += '|';
@@ -56,37 +50,8 @@ function getAnswers() {
   // remove trailing pipe
   userAnswers = userAnswers.slice(0,userAnswers.length-1);
 
-  console.log(userAnswers);
 
-
-  // $('.js-response-cell, .truefalse--container, .naturalDeduction__table').each(
-  // (idx, el) => {
-  //   console.log(idx, el);
-  //   if ($(el).hasClass('js-response-cell')) {
-  //     console.log('CELL--EMPTY', el.innerHTML, $(el).html());
-  //     userAnswers += $(el).html().length > 0 ? $(el).html() : 'X';
-  //   } else if ($(el).hasClass('truefalse--container')) {
-  //     const checkedInput = $(el).find('input:checked');
-  //     if (checkedInput.length) {
-  //       userAnswers += checkedInput.val();
-  //     } else {
-  //       userAnswers += 'X';
-  //     }
-  //   } else if ($(el).hasClass('naturalDeduction__table')) {
-  //     console.log('DEDUCTION');
-  //     userAnswers += getEncodedProofFromDOM(el);
-  //   }
-  //   if (idx < $('.js-response-cell, .truefalse--container').length - 1) {
-  //     // FIND A BETTER WAY TO DELIMIT ANSWERS
-  //     userAnswers += '+';
-  //   }
-  // });
-  // // const userAnswers = Array.from($('.js-response-cell,
-  //                               // input[type="radio"]:checked'))
-  // //                           .map( (o) => $(o).data('answer') ).join('');
-  // console.log('userAnswers', userAnswers);
   const currentExerciseset = getCurrentProblemSet();
-  console.log(currentExerciseset);
   var userIsLoggedIn;
 
   $.ajax({
@@ -100,7 +65,6 @@ function getAnswers() {
   });
 
   const type = window.location.href.split('/')[3];
-  console.log(type);
 
   $.ajax({
     method: 'POST',
@@ -113,14 +77,10 @@ function getAnswers() {
     },
     data: {currentExerciseset, userAnswers, type},
   }).done( (msg) => {
-    console.log('POST is back ', msg);
-    // alert(msg);
-    // const isLoggedIn = msg[0];
-    // msg = msg.slice(1);
+
     displayScore(msg);
 
     if (msg === '100') {
-      console.log("USERRRR", userIsLoggedIn);
 
       if (userIsLoggedIn) {
         fillInTheCircle(currentExerciseset);
@@ -137,7 +97,6 @@ $('.problemset__button').click( ()=> {
 });
 
 function fillInTheCircle(videoName) {
-  console.log("FILL IN THE CIRCLE", videoName);
   $('.sidebar__content[data-problemset-name=' + videoName + '] .circle').removeClass('circle--unwatched').addClass('circle--watched');
 }
 
@@ -160,11 +119,9 @@ function getEncodedProofFromDOM(tableElementDOM) {
   result = '';
   $(tableElementDOM).find('tr:not(:first-child)').each( (idx, tr) => {
     const TDs = $(tr).find('td');
-    console.log(TDs);
     const justification = $(TDs[2]).text();
     const citedLines = $(TDs[3]).text();
     const formula = $(TDs[1]).text().replace(/\s/g, '');
-    console.log(formula);
     result += justification + '|' + citedLines + '|' + formula;
     if (idx < $(tableElementDOM).find('tr:not(:first-child)').length - 1) {
       result += '!';
@@ -182,12 +139,10 @@ function getEncodedProofFromDOM(tableElementDOM) {
  * @return {void} Intialiates a POST request
  */
 // function reviewAnswers(problemset, userAnswers, userResponsesYesNo) {
-//   console.log('REVIEW ANSWERS', problemset, userAnswers, userResponsesYesNo);
 //   const correctAnswers =
         // userResponsesYesNo.replace(new RegExp('N', 'g'), '');
 //   const percentCorrect =
 //     Math.floor((correctAnswers.length / userAnswers.length) * 100);
-//   console.log(correctAnswers, percentCorrect);
 //   post('/PHI1600b/public/exercises/exercise/' + problemset,
 //     {problemset, userAnswers, userResponsesYesNo, percentCorrect});
 // }
@@ -199,18 +154,14 @@ function getEncodedProofFromDOM(tableElementDOM) {
  * @return {void} Affects the layout
  */
 function repopulateUserAnswers(userAnswers) {
-  console.log('REPOPULATE', userAnswers);
   $('.js-response-cell, .truefalse--container').each( (idx, el) => {
     if (userAnswers[idx] === 'X') { // user left this field blank, so skip
       return;
     }
-    console.log((idx, el));
-    console.log($(el).hasClass('truefalse--container'));
     if ($(el).hasClass('.js-response-cell')) {
       el.innerHTML = userAnswers[idx];
     } else if ($(el).hasClass('truefalse--container')) {
       const i = userAnswers[idx] === 'T' ? 0 : 1;
-      console.log($(el).find('input')[i]);
       $($(el).find('input')[i]).prop('checked', true);
     }
   });

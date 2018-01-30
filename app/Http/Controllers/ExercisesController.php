@@ -128,6 +128,7 @@ class ExercisesController extends Controller
 
       if (Auth::check())
       {
+
         if ($type === 'exercises')
         {
           $recordQuery = \DB::table('exercisesets_scores')
@@ -147,9 +148,6 @@ class ExercisesController extends Controller
 
 
         $record = $recordQuery->first();
-
-
-
 
 
         if (!is_null($record))
@@ -188,8 +186,9 @@ class ExercisesController extends Controller
               'exerciseset_name' => $exercisesetName
             ]);
           }
-          elseif ($type === 'homework' && $beforeDueDate)
+          elseif ($type === 'homework')
           {
+
             \DB::table('problemsets_scores')->insert([
               'student_key' => Auth::user()->key,
               'score' => $percentCorrect,
