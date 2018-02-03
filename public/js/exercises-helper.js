@@ -108,7 +108,12 @@ function fillInTheCircle(videoName) {
 function displayScore(score, userIsLoggedIn = false) {
   $('.problemset__scoreSpan').html(score + '%');
   if (userIsLoggedIn) {
-    $('.problemset__topScore').html(`Your top score: ${score}%`);
+    // THIS SEEMS FRAGILE
+    let currentTopScore =
+      $('.problemset__topScore').html().match(/\s\d+(?=%)/)[0].slice(1);
+    if (score > currentTopScore) {
+      $('.problemset__topScore').html(`Your top score: ${score}%`);
+    }
   }
 }
 

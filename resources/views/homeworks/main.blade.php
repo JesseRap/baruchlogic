@@ -42,7 +42,11 @@
 
     @endforeach
 
-    <button class="problemset__button" type="button" name="checkAnswerButton">Check Answers</button>
+    <button class="problemset__button" type="button" name="checkAnswerButton"
+      @if (!Auth::check())
+        disabled="true"
+      @endif
+    >Check Answers</button>
 
 
     <div class="problemset__score">

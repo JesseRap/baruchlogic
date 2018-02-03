@@ -3,8 +3,6 @@
 
   {!! $problem->prompt !!}
 
-
-
     <form>
 
       <fieldset>
@@ -17,7 +15,11 @@
 
             <input type="radio" class="multichoice__input js-response" name="multichoice"
               id="{{ $problem->id }}--{{ $letter }}" value="{{ $letter }}"
-              data-answer="{{ $letter }}">
+              data-answer="{{ $letter }}"
+              @if (!Auth::check())
+                disabled="true"
+              @endif
+              >
 
             <label class="multichoice__label"
               for="{{ $problem->id }}--{{ $letter }}">
