@@ -8,11 +8,8 @@
   <div class="main problemset">
 
     <div class="problemset__topScore">
-      Your top score:
-        @if (is_null($problemsetTopScore))
-          N/A
-        @else
-          {{$problemsetTopScore}}%
+        @if (!is_null($problemsetTopScore))
+          Your top score: {{$problemsetTopScore}}%
         @endif
     </div>
 
