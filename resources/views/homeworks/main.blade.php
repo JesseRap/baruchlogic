@@ -8,9 +8,14 @@
   <div class="main problemset">
 
     <div class="problemset__topScore">
+      @if (Auth::check())
+        Your top score:
         @if (!is_null($problemsetTopScore))
-          Your top score: {{$problemsetTopScore}}%
+          {{$problemsetTopScore}}%
+        @else
+          0%
         @endif
+      @endif
     </div>
 
     <h3 class="problemset__name">
