@@ -21,7 +21,7 @@ function getAnswers() {
 
   // Create pipe-separated string of user answers
   let userAnswers = '';
-  $('.truefalse__container, .truthTable, .multichoice__container',).each( (idx, el) => {
+  $('.truefalse__container, .truthTable, .multichoice__container').each( (idx, el) => {
 
     if ($(el).hasClass('truefalse__container')) {
       const response = $(el).find('.js-response:checked');
@@ -52,7 +52,7 @@ function getAnswers() {
 
 
   const currentExerciseset = getCurrentProblemSet();
-  var userIsLoggedIn;
+  var userIsLoggedIn = false;
 
   $.ajax({
     method: 'GET',
@@ -78,7 +78,7 @@ function getAnswers() {
     data: {currentExerciseset, userAnswers, type},
   }).done( (msg) => {
 
-    displayScore(msg);
+    displayScore(msg, userIsLoggedIn);
 
     if (msg === '100') {
 
@@ -90,7 +90,7 @@ function getAnswers() {
   }).fail( (msg) => {
     alert('Uh oh... Something went wrong. Try your request again.');
   });
-};
+}
 
 $('.problemset__button').click( ()=> {
   getAnswers();
@@ -105,8 +105,11 @@ function fillInTheCircle(videoName) {
  * @param {string} score The user's score
  * @return {void} Displays the score on the DOM
  */
-function displayScore(score) {
+function displayScore(score, userIsLoggedIn = false) {
   $('.problemset__scoreSpan').html(score + '%');
+  if (userIsLoggedIn) {
+    $('.problemset__topScore').html(`Your top score: ${score}%`);
+  }
 }
 
 /**

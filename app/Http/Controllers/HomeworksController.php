@@ -23,6 +23,8 @@ class HomeworksController extends Controller
 
       $problemsetsSolvedByUser = NULL;
 
+      $problemsetTopScore = NULL;
+
       if (Auth::check())
       {
         $problemsetsSolvedByUser =
@@ -35,6 +37,15 @@ class HomeworksController extends Controller
                               ['score', '=', 100]
                             ])
                             ->pluck('problemset_name')->toArray();
+
+        if (!is_null($problemset)) {
+          $problemsetTopScore = \DB::table('problemsets_scores')
+                                  ->where([
+                                    ['student_key', '=', 'testuser'],
+                                    ['problemset_name', '=', 'hw_1']
+                                  ])
+                                  ->pluck('score')->first();
+        }
       }
 
 
@@ -43,7 +54,8 @@ class HomeworksController extends Controller
         'numUnits' => $numUnits,
         'problemset' => $problemset,
         'problemsetProblems' => $problemsetProblems,
-        'problemsetsSolvedByUser' => $problemsetsSolvedByUser
+        'problemsetsSolvedByUser' => $problemsetsSolvedByUser,
+        'problemsetTopScore' => $problemsetTopScore
       ]);
 
     }

@@ -7,6 +7,14 @@
 
   <div class="main problemset">
 
+    <div class="problemset__topScore">
+      Your top score:
+        @if (is_null($problemsetTopScore))
+          N/A
+        @else
+          {{$problemsetTopScore}}%
+        @endif
+    </div>
 
     <h3 class="problemset__name">
       {{$problemset->name_long}}
