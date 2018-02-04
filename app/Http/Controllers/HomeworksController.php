@@ -41,8 +41,8 @@ class HomeworksController extends Controller
         if (!is_null($problemset)) {
           $problemsetTopScore = \DB::table('problemsets_scores')
                                   ->where([
-                                    ['student_key', '=', 'testuser'],
-                                    ['problemset_name', '=', 'hw_1']
+                                    ['student_key', '=', Auth::user()->key],
+                                    ['problemset_name', '=', $problemset->name]
                                   ])
                                   ->pluck('score')->first();
         }
