@@ -13,7 +13,7 @@ class VideosController extends Controller
 
       $allVideos = Video::all();
 
-      $numUnits = Video::groupBy('unit')->distinct()->count();
+      $numUnits = Video::distinct()->count('unit');
 
       return view('videos/index', [
         'allVideos' => $allVideos,

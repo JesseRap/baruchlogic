@@ -7,7 +7,7 @@
   </label>
 
 
-  <?php $num_units = \DB::table('videos')->select('unit')->distinct()->count() ?>
+  <?php $num_units = \DB::table('videos')->distinct()->count('unit') ?>
 
   <div class="sidebar__container">
 

@@ -354,7 +354,6 @@ legend {
   width: 250px;
   border-right: 5px solid #08a90d;
   color: #09c10e;
-  overflow: hidden;
   position: relative;
   background-color: white;
 }
@@ -366,6 +365,7 @@ legend {
     border-right: 0px;
     border-bottom: 5px solid #08a90d;
     padding: 0px;
+    overflow: hidden;
   }
 }
 

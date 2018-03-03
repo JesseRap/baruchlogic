@@ -11,7 +11,7 @@
   </h3>
 
   <div class="problemset__text">
-    {{$exerciseset->text}}
+    {!! $exerciseset->text !!}
   </div>
 
   <?php $include_truth_table_logic = FALSE; ?>

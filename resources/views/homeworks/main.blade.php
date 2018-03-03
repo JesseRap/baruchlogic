@@ -23,7 +23,7 @@
     </h3>
 
     <div class="problemset__text">
-      {{$problemset->text}}
+      {!! $problemset->text !!}
     </div>
 
     <?php $include_truth_table_logic = false; ?>
