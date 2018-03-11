@@ -44,8 +44,6 @@ class ExercisesController extends Controller
                             ->pluck('exerciseset_name')->toArray();
       }
 
-
-
       return view('exercises/index', [
         'allExercisesets' => $allExercisesets,
         'numUnits' => $numUnits,
@@ -86,6 +84,7 @@ class ExercisesController extends Controller
       }
 
 
+
       $correctAnswers = $exerciseset->getAnswers();
 
 
@@ -108,7 +107,6 @@ class ExercisesController extends Controller
       }, $userAnswers, array_keys($userAnswers));
 
 
-
       $percentCorrect = floor((count(array_filter($userGrades, function($el)
         {
           return $el === 1;
@@ -120,8 +118,6 @@ class ExercisesController extends Controller
       //   echo $percentCorrect;
       //   return;
       // }
-
-
 
 
 
@@ -153,7 +149,9 @@ class ExercisesController extends Controller
         if (!is_null($record))
         {
           if ($type === 'homework')
+
           {
+
             $dueDate = \DB::table('hw_due_date_pivot')
                           ->where([
                             ['problemset_name', '=', $exercisesetName],
@@ -163,7 +161,6 @@ class ExercisesController extends Controller
                           ->due_date_time;
 
             $dueDate = Carbon::parse($dueDate, 'America/New_York');
-
             $beforeDueDate = Carbon::now('America/New_York') < $dueDate;
             if ($percentCorrect > $record->score && $beforeDueDate) {
               $recordQuery->update(['score' => $percentCorrect]);

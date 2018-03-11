@@ -18,6 +18,7 @@ TruthTable = (function() {
    */
   function buildColumnsFromFormula(formula, columnsArrayInput,
                                    topConnectiveIsIfThen = false) {
+    console.log("BUILD!", formula, columnsArrayInput);
     let columnsArray = columnsArrayInput || [];
     formula = Formula.sanitizeFormula(formula);
 
@@ -59,7 +60,7 @@ TruthTable = (function() {
         if (topConnectiveIsIfThen) { // the top connective must be 'if...then'
           group = /(^then )/i.exec(formula.slice(i));
         } else {
-          group = /(^and )|(^or )|(^if )|(^iff )|(^implies )|(^& )|(^V )/i
+          group = /(^and )|(^or )|(^if )|(^iff )|(^implies )|(^& )|(^V )|(^-> )|(^<-> )|^~/i
             .exec(formula.slice(i));
         }
         if (group) {

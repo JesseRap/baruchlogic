@@ -19,7 +19,9 @@ class Exerciseset extends Model
       foreach($exercises as $exercise)
       {
         $exercise->choices_decoded = json_decode($exercise->choices, true);
+        // $exercise->data = html_entity_decode($exercise->data);
       }
+      // var_dump($exercises);
 
       return $exercises;
 

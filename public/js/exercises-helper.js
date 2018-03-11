@@ -65,6 +65,7 @@ function getAnswers() {
   });
 
   const type = window.location.href.split('/')[3];
+  // console.log(currentExerciseset, userAnswers, type);
 
   $.ajax({
     method: 'POST',
