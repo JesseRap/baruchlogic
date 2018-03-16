@@ -4,15 +4,16 @@
 
   let clickedCellIdx = -1;
 
+  // Highlight the cell on hover
   $('.js-response-cell').on('mouseenter', (event)=> {
     event.target.classList.add('cell--active');
   });
-
+  // Un-highlight the cell on hover leave
   $('.js-response-cell').on('mouseleave', (event)=> {
     event.target.classList.remove('cell--active');
   });
 
-
+  // Select the clicked cell
   window.addEventListener('click', (event)=> {
     clearClickedCells();
     if ($(event.target).hasClass('js-response-cell')) {
@@ -26,6 +27,7 @@
     };
   });
 
+  // Rotate through the cells with the up/down arrows
   window.addEventListener('keydown', (event)=> {
     console.log(event);
     console.log(clickedCellIdx);
@@ -57,8 +59,9 @@
         clickedCellIdx = -1;
       }
     } else if (event.key === 'Backspace') {
-      $('.active .cell--clicked').html('');
-      $($('.active .cell--clicked')[0]).data('answer', '');
+      console.log("!!!!", $('.active .cell--clicked'));
+      $('.cell--clicked').html('');
+      $($('.cell--clicked')[0]).data('answer', '');
     }
   });
 
