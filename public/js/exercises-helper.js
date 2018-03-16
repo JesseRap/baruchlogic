@@ -23,7 +23,7 @@ function getAnswers() {
   let userAnswers = '';
   $('.truefalse__container, .truthTable, .multichoice__container').each( (idx, el) => {
 
-    if ($(el).hasClass('truefalse__container')) {
+    if ($(el).hasClass('truefalse__container')) { // TRUE/FALSE
       const response = $(el).find('.js-response:checked');
       if (response.length) {
         userAnswers += response[0].value + '|';
@@ -31,14 +31,14 @@ function getAnswers() {
         userAnswers += 'X|'; // Empty response is marked with an 'X'
       }
 
-    } else if ($(el).hasClass('truthTable')) {
+    } else if ($(el).hasClass('truthTable')) { // TRUTH TABLE
       const cells = $(el).find('.js-response-cell');
       $(cells).each( (i, cell) => {
         userAnswers += cell.innerHTML ? cell.innerHTML : 'X';
       });
       userAnswers += '|';
 
-    } else if ($(el).hasClass('multichoice__container')) {
+    } else if ($(el).hasClass('multichoice__container')) { // MULTIPLE CHOICE
       const response = $(el).find('.js-response:checked');
       if (response.length) {
         userAnswers += response[0].value + '|';
@@ -65,14 +65,26 @@ function getAnswers() {
   });
 
   const type = window.location.href.split('/')[3];
-  // console.log(currentExerciseset, userAnswers, type);
 
+  // /exercises/checkAnswers is used to check exercises and problemsets
+  // so the type must be passed along in the request data
+
+  submitAnswers(currentExerciseset, userAnswers, type, userIsLoggedIn);
+
+}
+
+$('.problemset__button').click( ()=> {
+  getAnswers();
+});
+
+
+/**
+ * Submits a POST request to grade the user's answers
+ */
+function submitAnswers(currentExerciseset, userAnswers, type, userIsLoggedIn) {
   $.ajax({
     method: 'POST',
     url: '/exercises/checkAnswers',
-    beforeSend: () => {
-      // alert('sending POST');
-    },
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
@@ -84,7 +96,8 @@ function getAnswers() {
     if (msg === '100') {
 
       if (userIsLoggedIn) {
-        fillInTheCircle(currentExerciseset);
+        // ISSUE: Filling in the circle for score of 100 is confusing for UI
+        // fillInTheCircle(currentExerciseset);
       }
       alert("Congratulations! You solved the problem set.")
     }
@@ -93,10 +106,9 @@ function getAnswers() {
   });
 }
 
-$('.problemset__button').click( ()=> {
-  getAnswers();
-});
-
+/**
+ * Fill in the circle for watched videos - DEPRECATED
+ */
 function fillInTheCircle(videoName) {
   $('.sidebar__content[data-problemset-name=' + videoName + '] .circle').removeClass('circle--unwatched').addClass('circle--watched');
 }
@@ -138,23 +150,6 @@ function getEncodedProofFromDOM(tableElementDOM) {
   });
   return result;
 }
-
-/**
- * POST back to the just-solved exercise page, with the user's response
- * included as POST data
- * @param {string} problemset Name of the problemset just responded to
- * @param {string} incorrectUserResponses String of 'Y/N' chars showing
- * user correct/incorrect answers
- * @return {void} Intialiates a POST request
- */
-// function reviewAnswers(problemset, userAnswers, userResponsesYesNo) {
-//   const correctAnswers =
-        // userResponsesYesNo.replace(new RegExp('N', 'g'), '');
-//   const percentCorrect =
-//     Math.floor((correctAnswers.length / userAnswers.length) * 100);
-//   post('/PHI1600b/public/exercises/exercise/' + problemset,
-//     {problemset, userAnswers, userResponsesYesNo, percentCorrect});
-// }
 
 
 /**

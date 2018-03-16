@@ -14,7 +14,8 @@ TruthTable = (function() {
    * @param {boolean} topConnectiveIsIfThen is needed in order to prepend 'if'
    *    and know that 'then' is the right connective
    * @return {array} An array containing all the necessary columns for a truth
-   *    table, as computed from a given formula
+   *    table, as computed from a given formula;
+   *    array should be ordered by length, and then lexicographically
    */
   function buildColumnsFromFormula(formula, columnsArrayInput,
                                    topConnectiveIsIfThen = false) {

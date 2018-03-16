@@ -12,9 +12,9 @@ function sortByLength(arr) {
   let result = arr.sort( (a, b) => {
     if (a.length === 1 && b.length === 1) {
       // if the propositions are atomic, sort by alphabet
-      return a > b;
+      return a - b;
     } else { // sort by length ascending
-      return a.length > b.length;
+      return a.length - b.length;
     }
   });
   return result;

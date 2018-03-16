@@ -1,3 +1,5 @@
+/* Event handlers for the login modal and button */
+
 $('.loginButton').click( ()=> {
   $('.loginButton__modal').removeClass('loginButton__modal--hidden');
 });

@@ -20,17 +20,13 @@
       $(event.target).addClass('cell--clicked');
       clickedCellIdx = Array.from($('.js-response-cell'))
                             .indexOf($('.cell--clicked')[0]);
-      console.log(clickedCellIdx);
     } else {
       clickedCellIdx = -1;
-      console.log(clickedCellIdx);
     };
   });
 
   // Rotate through the cells with the up/down arrows
   window.addEventListener('keydown', (event)=> {
-    console.log(event);
-    console.log(clickedCellIdx);
     let numOfCells = $('.js-response-cell').length;
     if (['t', 'T', 'f', 'F'].indexOf(event.key) > -1) {
       $('.cell--clicked').html(event.key.toUpperCase());
@@ -59,7 +55,6 @@
         clickedCellIdx = -1;
       }
     } else if (event.key === 'Backspace') {
-      console.log("!!!!", $('.active .cell--clicked'));
       $('.cell--clicked').html('');
       $($('.cell--clicked')[0]).data('answer', '');
     }
