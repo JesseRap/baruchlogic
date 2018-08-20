@@ -40,7 +40,7 @@ The textbook is written in a somewhat conversational style. The intention was to
 
 <h2>Course Content</h2>
 
-The course is divided into three units:
+The course is divided into three units. The units are further subdivided into chapters, which are meant to correspond to "weeks" (i.e., a set of two sessions - not always a temporal week). The chapters are associated with specific homework exercises, and also practice exercises. At the end of the chapter, recommended practice exercises are listed.
 
 <h4>Unit 1</h4>
 
@@ -130,3 +130,24 @@ Hybrid courses are very different than normal courses. And this one is even more
 * The materials have been specially crafted for Baruch students by Baruch educators.
 
 Don't be afraid to stress the freedom offered by the class. But be sure to note that this requires a higher level of discispline and self-awareness than most classes. The instructor will not always be there asking you if you read this or that chapter, etc. Based on the course structure, you can literally come to class only two or three times and still receive a perfect score! But this happens very rarely. Students must take it upon themselves to work on the material during the week (not leave everything until the last night); not "game" or guess at the homework answers; and actually come to the in-person review sessions if they are not understanding the material. Ultimately, if a student is not doing well, and they are *not* attending the review sessions, then they are indicating that they are not motivated to perform better in the class. To put it in a positive way, the review sessions are extremely helpful and people who attend tend to get better grades.
+
+
+
+<h2>The current state of the content</h2>
+<h4>Unit I</h4>
+* Text: Complete
+* Video Lectures: Complete
+* Practice Exercises: Complete (could be expanded)
+* Homeworks: Complete
+
+<h4>Unit II</h4>
+* Text: Complete
+* Video Lectures: Incomplete
+* Practice Exercises: Mostly Complete
+* Homework Exercises: Complete
+
+<h4>Unit III</h4>
+* Text: Mostly Complete
+* Video Lectures: Incomplete
+* Practice Exercises: (Paper: Yes; Digital: Incomplete)
+* Homework Exercises (Paper: Yes; Digital: Incomplete)
