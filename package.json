@@ -17,7 +17,7 @@
     "cross-env": "^5.1",
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
-    "jquery": "^3.2",
+    "jquery": "^3.5",
     "laravel-elixir": "^6.0.0-17",
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
